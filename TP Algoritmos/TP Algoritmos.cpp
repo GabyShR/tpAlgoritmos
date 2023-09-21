@@ -1,36 +1,20 @@
 #include "pch.h"
-#include "askAndAnswers.h"
-#include "conio.h"
+#include "Menu.h"
 
 using namespace System;
+using namespace std;
+
 
 int main()
 {
-    srand(time(0));
-    Pregunta* objPregunta;
-    ArrPreguntaRespondidas* arrPreguntas = new ArrPreguntaRespondidas;
-    int c = 1;
-    while (c == 1)
-    {
-        if (kbhit()) {
-            char tecla = _getch();
-            switch (tolower(tecla))
-            {
-            case 'a':
-                objPregunta = new Pregunta;
-                arrPreguntas->agregarPregunta(objPregunta);
-                break;
-            case 'b':
-                arrPreguntas->listarPreguntas();
-                break;
-            case 'c':
-                c = 2;
-                break;
-            default:
-                break;
-            }
-        }
-    }delete arrPreguntas;
-    
+    Console::SetWindowSize(120, 40);
+    Console::CursorVisible = false;
+    menuFinal();
+
+    system("pause>0");
     return 0;
 }
+
+//AREA DONDE LAS PELOTAS SE VAN A MOVER
+//16,17 - 79,17
+//16,34 - 79,34

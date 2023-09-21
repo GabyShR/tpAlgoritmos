@@ -128,8 +128,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMenu.h" />
+    <ClInclude Include="Personaje.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Persona.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="utilidad.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />

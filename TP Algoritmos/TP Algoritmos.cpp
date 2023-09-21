@@ -31,6 +31,6 @@ int main()
             }
         }
     }delete arrPreguntas;
-
+    
     return 0;
 }

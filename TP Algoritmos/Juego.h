@@ -1,5 +1,5 @@
 #include "Librerias.h"
-
+#include "Pregunta.h"
 int Juego[40][120] = {
 	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -62,31 +62,14 @@ void printJuegoMatriz() {
 	}
 }
 
-char primerPregunta[] = "Si Maria habla mas bajo que Carmen y Lola habla mas alto que Carmen,  Maria habla mas alto o mas bajo que Lola?";
 
-void escribirOracion(const char oracion[]) {
-	int length = strlen(oracion);
-	int x = 31;
-	int y = 7;
-	color(110);
-	for (int i = 0; i < length; i++) {
-		setxy(x, y);
-		cout << oracion[i];
-
-		if (x == 65) {
-			cout << "\n";
-			y++;
-			x = 30;
-		}
-		x++;
-		_sleep(50);
-
-	}
-}
 
 void partida() {
 	printJuegoMatriz();
-	escribirOracion(primerPregunta);
+	BancoDePreguntas* arrPreguntas = new BancoDePreguntas();
+
+	Pregunta* objPregunta = new Pregunta(arrPreguntas, rand() % 9);
+	objPregunta->mostrarPregunta();
 	system("pause>0");
 }
 

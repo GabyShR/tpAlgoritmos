@@ -127,6 +127,8 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CCreditos.h" />
+    <ClInclude Include="CIntegrante.h" />
     <ClInclude Include="CMenu.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />

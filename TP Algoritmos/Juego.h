@@ -1,5 +1,9 @@
 #include "Librerias.h"
 #include "Pregunta.h"
+#include "Pelotas.h"
+
+#define WIDTH 80
+#define HEIGHT 35
 int Juego[40][120] = {
 	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -62,16 +66,44 @@ void printJuegoMatriz() {
 	}
 }
 
+class CJuego
+{
+public:
+	CJuego() {};
+	~CJuego() {};
+	void partida() {
+		printJuegoMatriz();
+		BancoDePreguntas* arrPreguntas = new BancoDePreguntas();
+
+		Pregunta* objPregunta = new Pregunta(arrPreguntas, rand() % 9);
+		objPregunta->mostrarPregunta();
+		system("pause>0");
+		color(992);
+		Controller* animationController = new Controller(WIDTH, HEIGHT);
+
+		while (true) {
+			if (_kbhit()) {
+				char key = toupper(_getch());
+
+				if (key == 'E') break;
+				if (key == 'A') animationController->addBall();
+			}
+
+			animationController->runAnimation();
+			_sleep(150);
+		}
+
+	};
+private:
+
+};
 
 
-void partida() {
-	printJuegoMatriz();
-	BancoDePreguntas* arrPreguntas = new BancoDePreguntas();
 
-	Pregunta* objPregunta = new Pregunta(arrPreguntas, rand() % 9);
-	objPregunta->mostrarPregunta();
-	system("pause>0");
-}
+
+
+
+
 
 
 

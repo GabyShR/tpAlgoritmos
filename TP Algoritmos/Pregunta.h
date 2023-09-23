@@ -58,7 +58,7 @@ public:
 				x = 30;
 			}
 			x++;
-			_sleep(20);
+			_sleep(50);
 		}
 	}
 

@@ -94,7 +94,8 @@ int OfficeTestMenu[40][120] = {                                                 
 
 };
 
-void printOT() {
+void printOT() 
+{
     for (int i = 0; i < 40; i++)
     {
         for (int j = 0; j < 120; j++)
@@ -140,7 +141,8 @@ void printOT() {
 
 }
 
-void printOTMenu() {
+void printOTMenu() 
+{
 
 
     for (int i = 20; i < 35; i++)
@@ -154,7 +156,8 @@ void printOTMenu() {
 
 }
 
-void menu() {
+void menu() 
+{
     printOT();
     printOTMenu();
     color(992);
@@ -171,7 +174,8 @@ void menu() {
 
 
 
-void moverPuntero(int& xP, int& yP, int& dyP, bool& mostrarPuntero) {
+void moverPuntero(int& xP, int& yP, int& dyP, bool& mostrarPuntero) 
+{
     if (_kbhit()) {
         int tecla = _getch();
         if (tecla == ABAJO) {
@@ -218,7 +222,8 @@ void moverPuntero(int& xP, int& yP, int& dyP, bool& mostrarPuntero) {
     }
 }
 
-void menuFinal() {
+void menuFinal() 
+{
     Console::Clear();
     //playmusic();
     int xP = 51; int yP = 23; int dyP = 4;

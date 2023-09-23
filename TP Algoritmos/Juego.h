@@ -53,7 +53,7 @@ void printJuegoMatriz() {
 	{
 		for (size_t j = 0; j < 120; j++)
 		{
-			Console::SetCursorPosition(j, i);
+			setxy(j, i); 
 
 			if (Juego[i][j] == 0) color(11); cout << char(219);
 			if (Juego[i][j] == 1) color(14); cout << char(219);

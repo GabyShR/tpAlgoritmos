@@ -75,4 +75,8 @@ public:
 		cursor(x + 1, y + 2); cout << "   ";
 	}
 
+	void cursor(int x, int y)
+	{
+		System::Console::SetCursorPosition(x, y);
+	}
 };

@@ -79,17 +79,18 @@ public:
 		objPregunta->mostrarPregunta();
 		system("pause>0");
 		color(992);
-		Controller* animationController = new Controller(WIDTH, HEIGHT);
+		Controladora* controladorAnimacion = new Controladora();
 
 		while (true) {
 			if (_kbhit()) {
 				char key = toupper(_getch());
 
 				if (key == 'E') break;
-				if (key == 'A') animationController->addBall();
+				if (key == 'A') controladorAnimacion->añadirPelota();
+				if (key == 'C') controladorAnimacion->borrarUltimaPelota();
 			}
 
-			animationController->runAnimation();
+			controladorAnimacion->animacion();  
 			_sleep(150);
 		}
 

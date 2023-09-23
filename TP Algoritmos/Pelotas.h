@@ -35,7 +35,7 @@ public:
 		dx = rand() % 2 == 0 ? -1 : 1;
 		dy = rand() % 2 == 0 ? -1 : 1;
 
-		w = 4;
+		w = 5;
 		h = 4;
 
 		alternativa = gen->Next('A', 'C' + 1);
@@ -52,7 +52,7 @@ public:
 			{
 				Console::SetCursorPosition(x + j, y + i);
 				color(992);
-				if (i == 0 || i == h - 1 || j == 0 || j == w - 1) cout << '*';
+				if (i == 0 || i == h - 1 || j == 0 || j == w - 1) cout << char(219);
 				else ' ';
 			} cout << endl;
 		}

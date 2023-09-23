@@ -15,16 +15,17 @@ private:
 
 BancoDePreguntas::BancoDePreguntas()
 {
+	setlocale(LC_ALL, "spanish");
 	ArrBancoDePreguntas.push_back("SACO es a ASCO lo que 7683 es a...");
-	ArrBancoDePreguntas.push_back("El padre de Juan tiene 4 hijos:    Lucas, Sandra, Ana y...    quien esel cuarto?");
-	ArrBancoDePreguntas.push_back("Que grupo continua la siguiente    serie: 2Z3, 4Y5, 6X7...");
-	ArrBancoDePreguntas.push_back("Si Maria habla mas bajo que Carmen y Lola habla mas alto que Carmen,  Maria habla mas alto o mas bajo queLola?");
-	ArrBancoDePreguntas.push_back("Una madre tiene 40 anios y su hijo tiene 10. Cuantos anios deben pasarpara que  la edad de la madre sea  el triple que la edad de su hijo?");
-	ArrBancoDePreguntas.push_back("Hay 3 cajas de igual tamano. Dentrode cada una de las tres cajas  hay otras dos mas pequenas, y en cada  una de ellas hay otras cuatro      todavia mas pequenas. Cuantas cajashay en total?");
-	ArrBancoDePreguntas.push_back("En un deposito hay un nivel muy    bajo de agua, pero se duplica todoslos dias. En total, tarda 60 dias  en llenarse. Cuanto tarda en llegara la mitad?");
-	ArrBancoDePreguntas.push_back("Le das una patada a una pelota,    esta se aleja 5 metros, pero vuelvedirectamente a ti sin que nadie te la devuelva. Por que?");
-	ArrBancoDePreguntas.push_back("Conduces un autobus en el que se   montan 18 personas. En la siguienteparada se bajan 5 pero suben otras 13. Al llegar a la siguiente       estacion, se bajan 21 y suben 4.   Cuantas personas quedan en el      autobus?");
-	ArrBancoDePreguntas.push_back("Algunos meses tienen 30 dias, otros31. Cuantos tienen 28 dias?");
+	ArrBancoDePreguntas.push_back("El padre de Juan tiene 4 hijos:    Lucas, Sandra, Ana y...    quién es el cuarto?");
+	ArrBancoDePreguntas.push_back("Que grupo continúa la siguiente    serie: 2Z3, 4Y5, 6X7...");
+	ArrBancoDePreguntas.push_back("Si Maria habla más bajo que Carmen y Lola habla más alto que Carmen,  Maria habla más alto o más bajo queLola?");
+	ArrBancoDePreguntas.push_back("Una madre tiene 40 años y su hijo tiene 10. Cuantos años deben pasarpara que  la edad de la madre sea  el triple que la edad de su hijo?");
+	ArrBancoDePreguntas.push_back("Hay 3 cajas de igual tamaño. Dentrode cada una de las tres cajas  hay otras dos mas pequeñas, y en cada  una de ellas hay otras cuatro      todavia mas pequeñas. Cuántas cajashay en total?");
+	ArrBancoDePreguntas.push_back("En un depósito hay un nivel muy    bajo de agua, pero se duplica todoslos días. En total, tarda 60 días  en llenarse. Cuánto tarda en llegara la mitad?");
+	ArrBancoDePreguntas.push_back("Le das una patada a una pelota,    esta se aleja 5 metros, pero vuelvedirectamente a ti sin que nadie te la devuelva. Por qué?");
+	ArrBancoDePreguntas.push_back("Conduces un autobus en el que se   montan 18 personas. En la siguienteparada se bajan 5 pero suben otras 13. Al llegar a la siguiente       estación, se bajan 21 y suben 4.   Cuántas personas quedan en el      autobus?");
+	ArrBancoDePreguntas.push_back("Algunos meses tienen 30 días, otros31. Cuantos tienen 28 días?");
 }
 
 BancoDePreguntas::~BancoDePreguntas()
@@ -58,7 +59,7 @@ public:
 				x = 30;
 			}
 			x++;
-			_sleep(50);
+			_sleep(10);
 		}
 	}
 

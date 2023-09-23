@@ -45,7 +45,7 @@ CPelota::CPelota()
 	this->dx = rand() % 2 == 0 ? -1 : 1;
 	this->dy = rand() % 2 == 0 ? -1 : 1;
 
-	alternativa = r.Next('A', 'C' + 1);
+	alternativa = r.Next('A', 'B' + 1);
 
 }
 
@@ -74,6 +74,10 @@ void CPelota::mover()
 
 void CPelota::dibujar()
 {
+	//Restaurar al idioma original para que los char se impriman normal
+	locale original = locale::global(locale("spanish"));
+	locale::global(original); 
+
 	for (int i = 0; i < alto; i++)
 	{
 		for (int j = 0; j < ancho; j++)

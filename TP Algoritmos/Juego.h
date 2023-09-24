@@ -103,7 +103,7 @@ public:
 	void animaPersonaje()
 	{
 		objPersonaje->borraPersonaje();
-		int eje = objPersonaje->validarMov(79, 35, 15, 16);
+		int eje = objPersonaje->validarMov(75, 35, 20, 16);
 		if (eje) {
 			objPersonaje->movInvalido(eje);
 		}

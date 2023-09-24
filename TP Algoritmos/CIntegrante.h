@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
-
+#include "windows.h"
+#include "conio.h"
 using namespace std;
 using namespace System;
 
@@ -30,6 +31,8 @@ public:
 	void dibujarJahaziel();
 	void dibujarDayro();
 	void dibujarGabriela();
+
+	void setY(int y) { this->y = y; }
 };
 
 CIntegrante::CIntegrante(short alto, short ancho)

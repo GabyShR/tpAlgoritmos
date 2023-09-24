@@ -1,6 +1,13 @@
 #include "pch.h"
+
 #include "CCreditos.h"
 
+void colori(int c) {
+
+	HANDLE  hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, c);
+} 
 int main()
 {
 	//system("color 3b");
@@ -9,10 +16,10 @@ int main()
 	CCreditos* creditos = new CCreditos();
 	CIntegrante* gaby = new CIntegrante(5, 103);
 
-	//creditos->pantallaDeFondo();
+dibujarFondo(); 
 
-	color(992); 
-	creditos->animarNombres();
+	colori(992); 
+	creditos->animarCreditos();
 
 
 	system("pause>0");

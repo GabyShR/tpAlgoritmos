@@ -8,48 +8,6 @@
 
 using namespace System;
 using namespace std;
-//class Persona
-//{
-//private:
-//	int x;
-//	int y;
-//	int dx;
-//	int dy;
-//	int w;
-//	int h;
-//public:
-//	Persona()
-//	{
-//		this->x = 0;
-//		this->y = 0;
-//		this->dx = 1;
-//		this->dy = 1;
-//	}
-//	Persona(int px, int py, int pdx, int pdy, int w, int h)
-//	{
-//		this->x = px;
-//		this->y = py;
-//		this->dx = pdx;
-//		this->dy = pdy;
-//		this->w = w;
-//		this->h = h;
-//	}
-//	~Persona() {}
-//
-//	void setx(int px) { x = px; }
-//	void sety(int py) { y = py; }
-//	void setdx(int pdx) { dx = pdx; }
-//	void setdy(int pdy) { dy = pdy; }
-//	int getx() { return x; }
-//	int gety() { return y; }
-//	int getdx() { return dx; }
-//	int getdy() { return dy; }
-//
-//
-//
-//
-//
-//};
 
 class EntidadArea {
 	int x1, y1, x2, y2;
@@ -77,59 +35,66 @@ private:
 	int dy;
 	int w;
 	int h;
+	int speed;
 public:
-	void forma_personaje()
+	Personaje()
+	{
+		x = 50;
+		y = 26;
+		dx = 0;
+		dy = 0;
+		w = 3;
+		h = 3;
+	}
+
+	~Personaje() {}
+
+	void borraPersonaje()
 	{
 		for (size_t i = 0; i < h; i++)
 		{
 			for (size_t j = 0; j < w; j++)
 			{
 				setxy(x + j, i + y);
-				if (i == 0 && j == 1)cout << char(79);
-				if (i == 1)cout << char(47) << char(124) << char(92);
-				if (i == 2)cout << char(47) << ' ' << char(92);
-				else cout << ' ';
+				cout << " ";
 			}
 		}
-
-		/*setxy(x + 1, y); cout << char(79);
-		setxy(x, y + 1);
-		setxy(x, y + 2); cout << char(47) << " " << char(92);
-
-		  0
-		 /|\
-		 / \
-		*/
 	}
 
-	void borra_personaje()
-	{
-		setxy(x + 1, y); cout << " ";
-		setxy(x, y + 1); cout << "   ";
-		setxy(x, y + 2); cout << "   ";
+	int validarMov(int maxx, int maxy, int minx, int miny) {
+		if (x + dx  < minx || x + w + dx >maxx) { return 1; }
+		if (y + dy  < miny || y + h + dy >maxy) { return 2; }
+	}
+	void movInvalido(int eje) {
+		if (eje == 1) { dx = -dx; }
+		if (eje == 2) { dy = -dy; }
+	}
+	void mover() {
+		x += dx;
+		y += dy;
 	}
 
-	Personaje()
+	void dibujaPersonaje()
 	{
-		x = 50;
-		y = 27;
-		dx = 3;
-		dy = 3;
-		w = 1;
-		h = 1;
+		for (size_t i = 0; i < h; i++)
+		{
+			for (size_t j = 0; j < w; j++)
+			{
+				color(992);
+				setxy(x + j, i + y);
+				if (i == 0 && j == 1)cout << char(79);
+				else if ((i == h - 2 && j == 0) || (i == h - 1 && j == 0)) cout << char(47);
+				else if ((i == h - 2 && j == w - 1) || (i == h - 1 && j == w - 1)) cout << char(92);
+				if (i == 1 && j == 1)cout << char(124);
+				else cout << ' ';
+			}
+			cout << endl;
+		}
 	}
-
-	~Personaje() {}
-
-	void anima_personaje(char tecla)
-	{
-		borra_personaje();
-		if ((tecla == arriba) && (y > 16)) y -= dy;
-		if ((tecla == abajo) && (y < 35)) y += y;
-		if ((tecla == izquierda) && (x > 15)) x -= dx;
-		if ((tecla == derecha) && (x < 79)) x += dx;
-		forma_personaje();
-	};
+	void setDirec(int ex, int ey) {
+		if (ex == 1) { dx = ey; }
+		if (ex == 2) { dy = ey; }
+	}
 
 	EntidadArea* getArea() {
 		return new EntidadArea(x, y, x + w, y + h);

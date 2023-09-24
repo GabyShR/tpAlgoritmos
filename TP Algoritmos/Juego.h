@@ -77,18 +77,40 @@ private:
 	Pregunta* objPregunta;
 	Controladora* controladorPelotas;
 	Personaje* objPersonaje;
+	int speed;
 public:
 	CJuego()
 	{
 		objPregunta = new Pregunta();
 		controladorPelotas = new Controladora();
 		objPersonaje = new Personaje();
-
+		speed = 0;
 	}
 
 	~CJuego() {}
-
-
+	void animaPersonaje()
+	{
+		objPersonaje->borraPersonaje();
+		int eje = objPersonaje->validarMov(79, 35, 15, 16);
+		if (eje) {
+			objPersonaje->movInvalido(eje);
+		}
+		else {
+			objPersonaje->mover();
+		}
+		objPersonaje->dibujaPersonaje();
+	};
+	void teclado(char letra) {
+		switch (letra)
+		{
+		case'W':objPersonaje->setDirec(2, -1); break;
+		case'A':objPersonaje->setDirec(1, -1); break;
+		case'S':objPersonaje->setDirec(2, 1); break;
+		case'D':objPersonaje->setDirec(1, 1); break;
+		default:
+			break;
+		}
+	}
 	void partida()
 	{
 		printJuegoMatriz();
@@ -96,23 +118,23 @@ public:
 		objPregunta->mostrarRespuestas();
 		color(992);
 
-		while (!controladorPelotas->verificarColisiones(objPersonaje))
+		while (true)
 		{
-			if (kbhit()) {
-				char key = _getch();
-				objPersonaje->anima_personaje(key);
-			}
+			animaPersonaje();
+			if (kbhit()) { teclado(toupper(_getch())); }
+
 			controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
+
 			controladorPelotas->verificarColisiones(objPersonaje);
+
+			if (controladorPelotas->verificarColisiones(objPersonaje)) {
+				int eje = controladorPelotas->verificarColisiones(objPersonaje);
+				if (eje == 1) setxy(60, 20); cout << "ganaste"; break;
+				if (eje == 2) setxy(60, 20); cout << "perdiste"; break;
+			}
 
 			_sleep(100);
 
 		}
-		int eje = controladorPelotas->verificarColisiones(objPersonaje);
-		if (eje == 1) setxy(60, 20); cout << "ganaste";
-		if (eje == 2) setxy(60, 20); cout << "perdiste";
-
 	};
-
-
 };

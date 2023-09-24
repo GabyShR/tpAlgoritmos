@@ -88,6 +88,18 @@ public:
 	}
 
 	~CJuego() {}
+
+	void teclado(char letra) {
+		switch (letra)
+		{
+		case'W': objPersonaje->mover(2, -1); break;
+		case'A': objPersonaje->mover(1, -1);  break;
+		case'S': objPersonaje->mover(2, 1);  break;
+		case'D': objPersonaje->mover(1, 1);  break;
+		default: break;
+		}
+	}
+
 	void animaPersonaje()
 	{
 		objPersonaje->borraPersonaje();
@@ -96,21 +108,13 @@ public:
 			objPersonaje->movInvalido(eje);
 		}
 		else {
-			objPersonaje->mover();
+			if (kbhit()) {
+				teclado(toupper(_getch()));
+			}
 		}
 		objPersonaje->dibujaPersonaje();
+
 	};
-	void teclado(char letra) {
-		switch (letra)
-		{
-		case'W':objPersonaje->setDirec(2, -1); break;
-		case'A':objPersonaje->setDirec(1, -1); break;
-		case'S':objPersonaje->setDirec(2, 1); break;
-		case'D':objPersonaje->setDirec(1, 1); break;
-		default:
-			break;
-		}
-	}
 	void partida()
 	{
 		printJuegoMatriz();
@@ -120,8 +124,8 @@ public:
 
 		while (true)
 		{
+
 			animaPersonaje();
-			if (kbhit()) { teclado(toupper(_getch())); }
 
 			controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
 

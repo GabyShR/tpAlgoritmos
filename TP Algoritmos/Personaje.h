@@ -35,7 +35,7 @@ private:
 	int dy;
 	int w;
 	int h;
-	int speed;
+	bool movimiento;
 public:
 	Personaje()
 	{
@@ -48,7 +48,6 @@ public:
 	}
 
 	~Personaje() {}
-
 	void borraPersonaje()
 	{
 		for (size_t i = 0; i < h; i++)
@@ -69,10 +68,6 @@ public:
 		if (eje == 1) { dx = -dx; }
 		if (eje == 2) { dy = -dy; }
 	}
-	void mover() {
-		x += dx;
-		y += dy;
-	}
 
 	void dibujaPersonaje()
 	{
@@ -91,9 +86,12 @@ public:
 			cout << endl;
 		}
 	}
-	void setDirec(int ex, int ey) {
-		if (ex == 1) { dx = ey; }
-		if (ex == 2) { dy = ey; }
+
+
+
+	void mover(int ex, int ey) {
+		if (ex == 1) { dx = ey; x += dx; }
+		if (ex == 2) { dy = ey; y += dy; }
 	}
 
 	EntidadArea* getArea() {

@@ -198,7 +198,7 @@ public:
 		restaurarIdiomaOriginal();
 		int x = WIDTH - 20;
 		int y = (HEIGHT / 2) + 8;
-		int ancho = 16;
+		int ancho = 17;
 		int alto = 6;
 
 		for (int i = 0; i < ancho; i++)

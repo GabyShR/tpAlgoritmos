@@ -8,6 +8,11 @@ public:
 	~BancoDePreguntas();
 	string getPregunta(int eje) { return ArrBancoDePreguntas[eje]; }
 
+	string getRespuestaIncorrecta(int eje) { return ArrRespuestasIncorrectas[eje]; }
+
+	string getRespuestaCorrecta(int eje) { return ArrRespuestasCorrectas[eje]; }
+
+
 private:
 	vector<string> ArrBancoDePreguntas;
 	vector<string> ArrRespuestasCorrectas;
@@ -29,48 +34,122 @@ BancoDePreguntas::BancoDePreguntas()
 	ArrBancoDePreguntas.push_back("Algunos meses tienen 30 dias, otros31. Cuantos tienen 28 dias?");
 
 	//respuestas correctas
-	ArrRespuestasCorrectas.push_back("6783");
-	ArrRespuestasCorrectas.push_back("Juan");
-	ArrRespuestasCorrectas.push_back("8W9");
-	ArrRespuestasCorrectas.push_back("Habla mas bajo");
-	ArrRespuestasCorrectas.push_back("5 años");
-	ArrRespuestasCorrectas.push_back("24 cajas");
-	ArrRespuestasCorrectas.push_back("59 dias");
-	ArrRespuestasCorrectas.push_back("Porque se lanzo hacia arriba");
-	ArrRespuestasCorrectas.push_back("9 personas ");
-	ArrRespuestasCorrectas.push_back("Todos");
+	ArrRespuestasCorrectas.push_back(". 6783");
+	ArrRespuestasCorrectas.push_back(". Juan");
+	ArrRespuestasCorrectas.push_back(". 8W9");
+	ArrRespuestasCorrectas.push_back(". Habla más bajo");
+	ArrRespuestasCorrectas.push_back(". 5 años");
+	ArrRespuestasCorrectas.push_back(". 24 cajas");
+	ArrRespuestasCorrectas.push_back(". 59 días");
+	ArrRespuestasCorrectas.push_back(". Porque se lanzó hacia arriba");
+	ArrRespuestasCorrectas.push_back(". 9 personas ");
+	ArrRespuestasCorrectas.push_back(". Todos");
 
 	//respuestas incorrectas
-	ArrRespuestasIncorrectas.push_back("6873");
-	ArrRespuestasIncorrectas.push_back("Lucas");
-	ArrRespuestasIncorrectas.push_back("8V9");
-	ArrRespuestasIncorrectas.push_back("Habla mas alto");
-	ArrRespuestasIncorrectas.push_back("4 años");
-	ArrRespuestasIncorrectas.push_back("12 cajas");
-	ArrRespuestasIncorrectas.push_back("30 días");
-	ArrRespuestasIncorrectas.push_back("Porque reboto en una pared");
-	ArrRespuestasIncorrectas.push_back("14 personas ");
-	ArrRespuestasIncorrectas.push_back("1 mes");
+	ArrRespuestasIncorrectas.push_back(". 6873");
+	ArrRespuestasIncorrectas.push_back(". Lucas");
+	ArrRespuestasIncorrectas.push_back(". 8V9");
+	ArrRespuestasIncorrectas.push_back(". Habla más alto");
+	ArrRespuestasIncorrectas.push_back(". 4 años");
+	ArrRespuestasIncorrectas.push_back(". 12 cajas");
+	ArrRespuestasIncorrectas.push_back(". 30 días");
+	ArrRespuestasIncorrectas.push_back(". Porque rebotó en una pared");
+	ArrRespuestasIncorrectas.push_back(". 14 personas ");
+	ArrRespuestasIncorrectas.push_back(". 1 mes");
 
 }
 
 BancoDePreguntas::~BancoDePreguntas() {}
 
-//========================================================================================
+//==================================================================================================
 
 class Pregunta
 {
-public:
-	Pregunta(BancoDePreguntas* parrPreguntas, int preguntaIndex) {
 
-		//esta inicializando el vector
-		arrPreguntas = parrPreguntas;
+private:
+	short preguntaIndex;
+	char opcionCorrecta, opcionIncorrecta;
+
+	string pregunta;
+	BancoDePreguntas* arrPreguntas;
+	string respuesta;
+	string respuestaCorrecta;
+	BancoDePreguntas* arrRespuestasCorrectas;
+	string respuestaIncorrecta;
+	BancoDePreguntas* arrRespuestasIncorrectas;
+
+public:
+	Pregunta()
+	{
+		Random r;
+		opcionCorrecta = r.Next('A', 'B' + 1);
+
+		if (opcionCorrecta == 'A') opcionIncorrecta == 'B';
+		else opcionIncorrecta == 'A';
+
+		preguntaIndex = r.Next(0, 10); // 0 - 9
+
+		arrPreguntas = new BancoDePreguntas();
 		pregunta = arrPreguntas->getPregunta(preguntaIndex);
 
+		arrRespuestasCorrectas = new BancoDePreguntas();
+		respuestaCorrecta = arrRespuestasCorrectas->getRespuestaCorrecta(preguntaIndex);
+
+		arrRespuestasIncorrectas = new BancoDePreguntas();
+		respuestaIncorrecta = arrRespuestasIncorrectas->getRespuestaIncorrecta(preguntaIndex);
 	}
+
 	~Pregunta() {};
+
+	void mostrarAlternativa(string alternativa)
+	{
+		setlocale(LC_ALL, "spanish");
+		int aumentoEnY = 0;
+		if (alternativa[0] == 'A') aumentoEnY = 8;
+		if (alternativa[0] == 'B') aumentoEnY = 12;
+
+		int x = WIDTH - 20;
+		int y = (HEIGHT / 2) + aumentoEnY;
+		int length = alternativa.length();
+
+		//color(110);
+
+		for (int i = 0; i < length; i++)
+		{
+			setxy(x, y);
+			cout << alternativa[i];
+
+			if (x == WIDTH - 3) {
+				cout << '\n';
+				y++;
+				x = WIDTH - 20;
+			}
+			x++;
+		}
+	}
+
+	void mostrarRespuestas()
+	{
+		string alternativaA, alternativaB;
+
+		if (opcionCorrecta == 'A')
+		{
+			alternativaA = "A" + respuestaCorrecta;
+			alternativaB = "B" + respuestaIncorrecta;
+		}
+		else
+		{
+			alternativaA = "A" + respuestaIncorrecta;
+			alternativaB = "B" + respuestaCorrecta;
+		}
+
+		mostrarAlternativa(alternativaA);
+		mostrarAlternativa(alternativaB);
+	}
+
 	void mostrarPregunta()
 	{
+		setlocale(LC_ALL, "spanish");
 		int length = pregunta.length();
 		int x = 31;
 		int y = 4;
@@ -80,7 +159,7 @@ public:
 			cout << pregunta[i];
 
 			if (x == 65) {
-				cout << "\n";
+				cout << '\n';
 				y++;
 				x = 30;
 			}
@@ -89,9 +168,6 @@ public:
 		}
 	}
 
-private:
-	string pregunta;
-	BancoDePreguntas* arrPreguntas;
 };
 
 

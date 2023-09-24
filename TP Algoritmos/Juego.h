@@ -48,7 +48,10 @@ int Juego[40][120] = {
 
 };
 
-void printJuegoMatriz() {
+void printJuegoMatriz()
+{
+	restaurarIdiomaOriginal();
+
 	for (size_t i = 0; i < 40; i++)
 	{
 		for (size_t j = 0; j < 120; j++)
@@ -68,25 +71,37 @@ void printJuegoMatriz() {
 
 class CJuego
 {
-public:
-	CJuego() {};
-	~CJuego() {};
-	void partida() {
-		printJuegoMatriz();
-		BancoDePreguntas* arrPreguntas = new BancoDePreguntas();
+private:
 
-		Pregunta* objPregunta = new Pregunta(arrPreguntas, rand() % 9);
+	BancoDePreguntas* arrRespuestas;
+
+
+	Pregunta* objPregunta;
+
+	Controladora* controladorAnimacion;
+
+public:
+	CJuego()
+	{
+		arrRespuestas = new BancoDePreguntas();
+
+		objPregunta = new Pregunta();
+
+		controladorAnimacion = new Controladora();
+
+	}	~CJuego() {};
+
+	void partida()
+	{
+		printJuegoMatriz();
 		objPregunta->mostrarPregunta();
+		objPregunta->mostrarRespuestas();
 		system("pause>0");
 		color(992);
-		Controladora* controladorAnimacion = new Controladora();
-		//personaje 
 		Personaje* objpersonaje = new Personaje;
 
 		while (true) {
-
 			if (_kbhit()) {
-
 				char key = toupper(_getch());
 
 				if (key == 'E') break;
@@ -97,11 +112,11 @@ public:
 			}
 
 			controladorAnimacion->animacion();
-			_sleep(50);
+			_sleep(150);
 		}
 
-	};
-private:
+	}
+
 
 };
 

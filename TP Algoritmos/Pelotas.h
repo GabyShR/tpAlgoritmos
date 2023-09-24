@@ -1,6 +1,8 @@
 #pragma once
 #include "Librerias.h"
-class CPelota
+#include "Persona.h"
+
+class CPelota :public Persona
 {
 private:
 	float x, y;
@@ -11,10 +13,10 @@ private:
 	short minX, minY;
 
 public:
-	CPelota();
+	CPelota(int px, int py, int pdx, int pdy);
 	~CPelota();
 
-	void borrar();
+	//void borrar();
 	void mover();
 	void dibujar();
 
@@ -25,7 +27,7 @@ public:
 	float getY() { return y; }
 };
 
-CPelota::CPelota()
+CPelota::CPelota(int px, int py, int pdx, int pdy):Persona(px, py, pdx, pdy)
 {
 	Random r;
 
@@ -48,16 +50,16 @@ CPelota::CPelota()
 }
 
 CPelota::~CPelota() {}
-
-void CPelota::borrar()
-{
-	for (int i = 0; i < alto; ++i) {
-		for (int j = 0; j < ancho; ++j) {
-			setxy(x + j, y + i);
-			cout << ' ';
-		}
-	}
-}
+//
+//void CPelota::borrar()
+//{
+//	for (int i = 0; i < alto; ++i) {
+//		for (int j = 0; j < ancho; ++j) {
+//			setxy(x + j, y + i);
+//			cout << ' ';
+//		}
+//	}
+//}
 
 void CPelota::mover()
 {
@@ -96,7 +98,6 @@ void CPelota::dibujar()
 }
 
 // =====================================================================================
-
 class Controladora
 {
 private:
@@ -114,7 +115,7 @@ public:
 
 };
 
-Controladora::Controladora() {}
+Controladora::Controladora(){}
 
 Controladora::~Controladora()
 {
@@ -149,7 +150,7 @@ void Controladora::verificarColisiones()
 			if (primeraPelota->getX() == segundaPelota->getX() &&
 				primeraPelota->getY() == segundaPelota->getY())
 			{
-				primeraPelota->borrar();
+				primeraPelota->borra_personaje(3,3);
 				primeraPelota->mover();
 
 				segundaPelota->mover();
@@ -163,7 +164,7 @@ void Controladora::animacion() {
 	verificarColisiones();
 
 	for (CPelota* ball : pelotas) {
-		ball->borrar();
+		ball->borra_personaje(3,3);
 		ball->mover();
 		ball->dibujar();
 	}

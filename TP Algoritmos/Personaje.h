@@ -38,10 +38,10 @@ public:
 
 	void anima_personaje()
 	{
-		borra_personaje();
+		borra_personaje(3,3);
 		char tecla = _getch();
 		if ((tecla == arriba) && (pery > 16)) pery -= perdy; sety(pery);
-		if ((tecla == abajo) && (pery < 35)) pery += perdy; sety(pery);
+		if ((tecla == abajo) && (pery < 34)) pery += perdy; sety(pery);
 		if ((tecla == izquierda) && (perx > 15)) perx -= perdx; setx(perx);
 		if ((tecla == derecha) && (perx < 79)) perx += perdx; setx(perx);
 		forma_personaje();

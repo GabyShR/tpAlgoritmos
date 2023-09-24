@@ -68,11 +68,19 @@ public:
 		setxy(x, y + 2); cout << char(47) << " " << char(92);
 	}
 
-	void borra_personaje()
+	void borra_personaje(int palto,int pancho)
 	{
-		setxy(x + 1, y); cout << " ";
+		/*setxy(x + 1, y); cout << "   ";
 		setxy(x, y + 1); cout << "   ";
-		setxy(x, y + 2); cout << "   ";
+		setxy(x, y + 2); cout << "   ";*/
+
+		//lo puse para que borre con el ancho y alto que queramos
+		for (int i = 0; i < palto; ++i) {
+			for (int j = 0; j < pancho; ++j) {
+				setxy(x + j, y + i);
+				cout << ' ';
+			}
+		}
 	}
 
 };

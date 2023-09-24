@@ -255,7 +255,6 @@ public:
 
 	void resetearPartida()
 	{
-		objPersonaje->setPuntosAcumulados(10);
 		rondaPartidas[0]->getControladorPelotas()->at(0)->borrar();
 		rondaPartidas[0]->getControladorPelotas()->at(1)->borrar();
 		rondaPartidas[0]->getObjPregunta()->borrarPregunta();

@@ -193,4 +193,21 @@ public:
 		}
 	}
 
+	void borrarAlternativas()
+	{
+		restaurarIdiomaOriginal();
+		int x = WIDTH - 20;
+		int y = (HEIGHT / 2) + 8;
+		int ancho = 16;
+		int alto = 6;
+
+		for (int i = 0; i < ancho; i++)
+		{
+			for (int j = 0; j < alto; j++) 
+			{
+				setxy(x + i, y + j); color(14); cout << char(219);
+			}
+		}
+
+	}
 };

@@ -113,7 +113,6 @@ void printJuegoMatriz()
 			if (Juego[i][j] == 7) color(0); cout << char(219);
 
 		}
-		cout << endl;
 	}
 }
 void printPerdiste()
@@ -174,7 +173,6 @@ public:
 
 	void partida()
 	{
-		printJuegoMatriz();
 		color(992);
 		rondaPartidas[0]->mostrarEnunciados();
 
@@ -204,6 +202,7 @@ public:
 		rondaPartidas[0]->getControladorPelotas()->at(0)->borrar();
 		rondaPartidas[0]->getControladorPelotas()->at(1)->borrar();
 		rondaPartidas[0]->getObjPregunta()->borrarPregunta();
+		rondaPartidas[0]->getObjPregunta()->borrarAlternativas();
 
 		rondaPartidas.erase(rondaPartidas.begin() + 0);
 		rondaPartidas.push_back(new CPartida());

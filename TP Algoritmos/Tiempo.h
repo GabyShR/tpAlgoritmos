@@ -46,6 +46,7 @@ bool Tiempo::verificarTiempo()
 			}
 			seg--;
 		}
+		setColor(14, 0); 
 		setxy(WIDTH - 16, 5); cout << "TIEMPO " << '\n';
 		setxy(WIDTH - 15, 7); cout << min << ":";
 

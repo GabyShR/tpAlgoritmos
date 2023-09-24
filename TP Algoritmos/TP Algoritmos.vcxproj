@@ -127,8 +127,14 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CMenu.h" />
+    <ClInclude Include="Pelotas.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Librerias.h" />
+    <ClInclude Include="Juego.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Persona.h" />
+    <ClInclude Include="Personaje.h" />
+    <ClInclude Include="Pregunta.h" />
     <ClInclude Include="Resource.h" />
   </ItemGroup>
   <ItemGroup>

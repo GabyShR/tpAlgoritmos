@@ -1,6 +1,6 @@
 #pragma once
 #include "iostream"
-
+#include "Librerias.h"
 using namespace std;
 
 class Persona
@@ -63,16 +63,16 @@ public:
 
 	void forma_personaje()
 	{
-		cursor(x + 1, y); cout << char(79);
-		cursor(x, y + 1); cout << char(47) << char(124) << char(92);
-		cursor(x + 1, y + 2); cout << char(47) << " " << char(92);
+		setxy(x + 1, y); cout << char(79);
+		setxy(x, y + 1); cout << char(47) << char(124) << char(92);
+		setxy(x, y + 2); cout << char(47) << " " << char(92);
 	}
 
 	void borra_personaje()
 	{
-		cursor(x + 1, y); cout << " ";
-		cursor(x, y + 1); cout << "   ";
-		cursor(x + 1, y + 2); cout << "   ";
+		setxy(x + 1, y); cout << " ";
+		setxy(x, y + 1); cout << "   ";
+		setxy(x, y + 2); cout << "   ";
 	}
 
 };

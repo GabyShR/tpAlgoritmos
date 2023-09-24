@@ -1,7 +1,7 @@
 #include "Librerias.h"
 #include "Pregunta.h"
 #include "Pelotas.h"
-
+#include "Personaje.h"
 #define WIDTH 80
 #define HEIGHT 35
 int Juego[40][120] = {
@@ -80,18 +80,24 @@ public:
 		system("pause>0");
 		color(992);
 		Controladora* controladorAnimacion = new Controladora();
+		//personaje 
+		Personaje* objpersonaje = new Personaje;
 
 		while (true) {
+
 			if (_kbhit()) {
+
 				char key = toupper(_getch());
 
 				if (key == 'E') break;
 				if (key == 'A') controladorAnimacion->añadirPelota();
 				if (key == 'C') controladorAnimacion->borrarUltimaPelota();
+				objpersonaje->anima_personaje();
+
 			}
 
 			controladorAnimacion->animacion();
-			_sleep(150);
+			_sleep(50);
 		}
 
 	};

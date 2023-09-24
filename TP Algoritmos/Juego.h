@@ -167,6 +167,7 @@ public:
 		if (kbhit()) {
 			teclado(toupper(_getch()));
 		}
+
 		objPersonaje->dibujaPersonaje();
 
 	};
@@ -180,15 +181,15 @@ public:
 		while (true)
 		{
 
-			cronometro->mostrarTiempo(); 
-			animaPersonaje(); 
+			cronometro->mostrarTiempo();
+			animaPersonaje();
 
 			rondaPartidas[0]->animacion();
-			
 
-			if (rondaPartidas[0]->verificarColisiones(objPersonaje)) 
+
+			if (rondaPartidas[0]->verificarColisiones(objPersonaje))
 			{
-				
+
 				resetearPartida();
 			}
 

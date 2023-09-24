@@ -85,8 +85,8 @@ public:
 		Random r;
 		opcionCorrecta = r.Next('A', 'B' + 1);
 
-		if (opcionCorrecta == 'A') opcionIncorrecta == 'B';
-		else opcionIncorrecta == 'A';
+		if (opcionCorrecta == 'A') opcionIncorrecta = 'B';
+		else opcionIncorrecta = 'A';
 
 		preguntaIndex = r.Next(0, 10); // 0 - 9
 
@@ -101,6 +101,9 @@ public:
 	}
 
 	~Pregunta() {};
+
+	char getOpcionCorrecta() { return opcionCorrecta; }
+	char getOpcionIncorrecta() { return opcionIncorrecta; }
 
 	void mostrarAlternativa(string alternativa)
 	{
@@ -129,6 +132,7 @@ public:
 		}
 	}
 
+	
 	void mostrarRespuestas()
 	{
 		string alternativaA, alternativaB;

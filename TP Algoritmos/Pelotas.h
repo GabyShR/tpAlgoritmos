@@ -18,7 +18,7 @@ public:
 
 	void borrar();
 	void mover();
-	void dibujar();
+	void dibujar(char alternativa);
 
 	//void setX(int x) { this->x = x; }
 	//void setY(int y) { this->y = y; }
@@ -44,9 +44,6 @@ CPelota::CPelota()
 
 	this->dx = rand() % 2 == 0 ? -1 : 1;
 	this->dy = rand() % 2 == 0 ? -1 : 1;
-
-	alternativa = r.Next('A', 'B' + 1);
-
 }
 
 CPelota::~CPelota() {}
@@ -72,7 +69,7 @@ void CPelota::mover()
 	y += dy * velocidad;
 }
 
-void CPelota::dibujar()
+void CPelota::dibujar(char alternativa) 
 {
 	restaurarIdiomaOriginal();
 
@@ -90,10 +87,14 @@ void CPelota::dibujar()
 				setxy(x + j, y + i); cout << char(220);
 			}
 
-			if ((i == 0 && j == 0) || (i == alto - 1 && j == ancho - 1) || (i == 0 && j == ancho - 1) || (i == alto - 1 && j == 0)
-				|| j == 0 || j == ancho - 1)
+			if (j == 0 || j == ancho - 1)
 			{
 				setxy(x + j, y + i); cout << char(219);
+			}
+
+			if (i == alto - 2 && j == ancho - 3)
+			{
+				setxy(x + j, y + i); cout << alternativa; 
 			}
 		}
 	}
@@ -111,14 +112,21 @@ public:
 	Controladora();
 	~Controladora();
 
-	void añadirPelota();
-	void borrarUltimaPelota();
+	void borrarPelota(short index); 
 	void verificarColisiones();
-	void animacion();
+	void animacion(char alternativa1, char alternativa2); 
 
 };
 
-Controladora::Controladora() {}
+Controladora::Controladora() 
+{
+	int cant = 2;
+
+	for (int i = 0; i < cant; i++)
+	{
+		pelotas.push_back(new CPelota());
+	}
+}
 
 Controladora::~Controladora()
 {
@@ -129,14 +137,9 @@ Controladora::~Controladora()
 	pelotas.clear();
 }
 
-void Controladora::añadirPelota()
+void Controladora::borrarPelota(short index) 
 {
-	pelotas.push_back(new CPelota());
-}
-
-void Controladora::borrarUltimaPelota()
-{
-	pelotas.pop_back();
+	pelotas.erase(pelotas.begin() + index);
 }
 
 void Controladora::verificarColisiones()
@@ -163,12 +166,16 @@ void Controladora::verificarColisiones()
 	}
 }
 
-void Controladora::animacion() {
+void Controladora::animacion(char alternativa1, char alternativa2)  
+{
 	verificarColisiones();
 
-	for (CPelota* ball : pelotas) {
-		ball->borrar();
-		ball->mover();
-		ball->dibujar();
+	for (int i = 0; i < pelotas.size(); i++)
+	{
+		pelotas[i]->borrar();
+		pelotas[i]->mover(); 
+
+		if (i == 0) pelotas[i]->dibujar(alternativa1);
+		if (i == 1) pelotas[i]->dibujar(alternativa2);
 	}
 }

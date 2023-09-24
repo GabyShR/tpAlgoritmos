@@ -73,24 +73,14 @@ class CJuego
 {
 private:
 	
-	BancoDePreguntas* arrRespuestas;
-
-
 	Pregunta* objPregunta;
-
-	Controladora* controladorAnimacion;
+	Controladora* controladorPelotas;
 
 public:
-
-
 	CJuego()
 	{
-		arrRespuestas = new BancoDePreguntas();
-
 		objPregunta = new Pregunta();
-
-		controladorAnimacion = new Controladora();
-
+		controladorPelotas = new Controladora();
 	}
 
 	~CJuego() {}
@@ -100,20 +90,12 @@ public:
 		printJuegoMatriz();
 		objPregunta->mostrarPregunta(); 
 		objPregunta->mostrarRespuestas();
-		system("pause>0");
 		color(992);
 
-		while (true) {
-			if (_kbhit()) {
-				char key = toupper(_getch());
-
-				if (key == 'E') break;
-				if (key == 'A') controladorAnimacion->añadirPelota();
-				if (key == 'C') controladorAnimacion->borrarUltimaPelota();
-			}
-
-			controladorAnimacion->animacion();
-			_sleep(150);
+		while (true) 
+		{
+			controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
+			_sleep(120);
 		}
 
 	};

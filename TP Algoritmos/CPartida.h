@@ -4,6 +4,9 @@
 #include "Pelotas.h"
 #include "Personaje.h"
 
+int vidas = 3;
+
+
 class CPartida
 {
 private:
@@ -37,6 +40,7 @@ public:
 
 	bool verificarColisiones(Personaje* Jugador)
 	{
+
 		if (identificarColision(controladorPelotas->at(0)->getX(), controladorPelotas->at(0)->getY(), controladorPelotas->at(0)->getAncho(), controladorPelotas->at(0)->getAlto(),
 			Jugador->getX(), Jugador->getY(), Jugador->getAncho(), Jugador->getAlto()))
 		{
@@ -47,6 +51,7 @@ public:
 		if (identificarColision(controladorPelotas->at(1)->getX(), controladorPelotas->at(1)->getY(), controladorPelotas->at(1)->getAncho(), controladorPelotas->at(1)->getAlto(),
 			Jugador->getX(), Jugador->getY(), Jugador->getAncho(), Jugador->getAlto()))
 		{
+			vidas--;
 			setxy(60, 20); cout << "perdiste";
 			return true;
 		}

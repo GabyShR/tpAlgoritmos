@@ -25,6 +25,8 @@ public:
 
 	float getX() { return x; }
 	float getY() { return y; }
+
+	void setVelocidad(int velocidad) { this->velocidad = velocidad; }
 };
 
 CPelota::CPelota()

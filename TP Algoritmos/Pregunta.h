@@ -107,13 +107,13 @@ public:
 
 	void mostrarAlternativa(string alternativa)
 	{
-		setlocale(LC_ALL, "spanish"); 
+		setlocale(LC_ALL, "spanish");
 		int aumentoEnY = 0;
 		if (alternativa[0] == 'A') aumentoEnY = 8;
 		if (alternativa[0] == 'B') aumentoEnY = 12;
 
 		int x = WIDTH - 20;
-		int y = (HEIGHT / 2) + aumentoEnY;  
+		int y = (HEIGHT / 2) + aumentoEnY;
 		int length = alternativa.length();
 
 		//color(110);
@@ -132,7 +132,7 @@ public:
 		}
 	}
 
-	
+
 	void mostrarRespuestas()
 	{
 		string alternativaA, alternativaB;
@@ -154,7 +154,7 @@ public:
 
 	void mostrarPregunta()
 	{
-		setlocale(LC_ALL, "spanish"); 
+		setlocale(LC_ALL, "spanish");
 		int length = pregunta.length();
 		int x = 31;
 		int y = 7;

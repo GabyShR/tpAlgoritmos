@@ -49,7 +49,7 @@ int Juego[40][120] = {
 
 };
 
-void printJuegoMatriz() 
+void printJuegoMatriz()
 {
 	restaurarIdiomaOriginal();
 
@@ -73,7 +73,7 @@ void printJuegoMatriz()
 class CJuego
 {
 private:
-	
+
 	Pregunta* objPregunta;
 	Controladora* controladorPelotas;
 	Personaje* objPersonaje;
@@ -88,24 +88,29 @@ public:
 
 	~CJuego() {}
 
+
 	void partida()
-	{ 
+	{
 		printJuegoMatriz();
-		objPregunta->mostrarPregunta(); 
+		objPregunta->mostrarPregunta();
 		objPregunta->mostrarRespuestas();
 		color(992);
 
-		while (true) 
+		while (!controladorPelotas->verificarColisiones(objPersonaje))
 		{
 			if (kbhit()) {
 				char key = _getch();
 				objPersonaje->anima_personaje(key);
 			}
 			controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
-			_sleep(120);
+			controladorPelotas->verificarColisiones(objPersonaje);
 
+			_sleep(100);
 
 		}
+		int eje = controladorPelotas->verificarColisiones(objPersonaje);
+		if (eje == 1) setxy(60, 20); cout << "ganaste";
+		if (eje == 2) setxy(60, 20); cout << "perdiste";
 
 	};
 

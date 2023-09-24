@@ -27,8 +27,8 @@ public:
 	{
 		x = 50;
 		y = 33;
-		dx = 0;
-		dy = 0;
+		dx = 1;
+		dy = 1;
 		w = 3;
 		h = 3;
 	}
@@ -46,14 +46,14 @@ public:
 		}
 	}
 
-	int validarMov(int maxx, int maxy, int minx, int miny) {
-		if (x + dx  < minx || x + w + dx >maxx) { return 1; }
-		if (y + dy  < miny || y + h + dy >maxy) { return 2; }
-	}
-	void movInvalido(int eje) {
-		if (eje == 1) { dx = -dx; }
-		if (eje == 2) { dy = -dy; }
-	}
+	//int validarMov(int maxx, int maxy, int minx, int miny) {
+	//	if (x + dx  < minx || x + w + dx >maxx) { return 1; }
+	//	if (y + dy  < miny || y + h + dy >maxy) { return 2; }
+	//}
+	//void movInvalido(int eje) {
+	//	if (eje == 1) { dx = -dx; }
+	//	if (eje == 2) { dy = -dy; }
+	//}
 
 	void dibujaPersonaje()
 	{
@@ -73,9 +73,28 @@ public:
 		}
 	}
 
-	void mover(int ex, int ey) {
-		if (ex == 1) { dx = ey; x += dx; }
-		if (ex == 2) { dy = ey; y += dy; }
+	void mover(char var) 
+	{
+		switch (var)
+		{
+		case 'W':
+			if (y > MINY) y -= dy;
+
+			break;
+		case 'S':
+			if (y < MAXY-2) y += dy;
+
+			break;
+		case 'A':
+			if (x > MINX) x -= dx;
+
+			break;
+		case 'D':
+			if (x < MAXX) x += dx;
+
+
+			break;
+		}
 	}
 
 

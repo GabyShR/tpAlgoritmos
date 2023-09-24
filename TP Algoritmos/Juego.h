@@ -150,14 +150,18 @@ public:
 	~CJuego() {}
 
 	void teclado(char letra) {
-		switch (letra)
-		{
-		case'W': objPersonaje->mover(2, -1); break;
-		case'A': objPersonaje->mover(1, -1);  break;
-		case'S': objPersonaje->mover(2, 1);  break;
-		case'D': objPersonaje->mover(1, 1);  break;
-		default: break;
-		}
+		//switch (letra)
+		//{
+		//case'W': objPersonaje->mover(2, -1); break;
+		//case'A': objPersonaje->mover(1, -1);  break;
+		//case'S': objPersonaje->mover(2, 1);  break;
+		//case'D': objPersonaje->mover(1, 1);  break;
+		//default: break;
+		//}
+		if (letra == 'W') objPersonaje->mover(letra);
+		if (letra == 'A') objPersonaje->mover(letra);
+		if (letra == 'S') objPersonaje->mover(letra);
+		if (letra == 'D') objPersonaje->mover(letra);
 	}
 
 	void animaPersonaje()

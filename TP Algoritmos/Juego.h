@@ -97,9 +97,13 @@ public:
 
 		while (true) 
 		{
+			if (kbhit()) {
+				char key = _getch();
+				objPersonaje->anima_personaje(key);
+			}
 			controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
 			_sleep(120);
-			objPersonaje->anima_personaje(_getch());
+
 
 		}
 

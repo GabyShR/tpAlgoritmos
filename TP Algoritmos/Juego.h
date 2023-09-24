@@ -215,6 +215,7 @@ public:
 
 	void partida(bool &irAlMenu)
 	{
+		playmusic();
 		irAlMenu = false;
 		color(992);
 		rondaPartidas[0]->mostrarEnunciados();

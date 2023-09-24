@@ -74,9 +74,7 @@ void CPelota::mover()
 
 void CPelota::dibujar()
 {
-	//Restaurar al idioma original para que los char se impriman normal
-	locale original = locale::global(locale("spanish"));
-	locale::global(original); 
+	restaurarIdiomaOriginal();
 
 	for (int i = 0; i < alto; i++)
 	{

@@ -27,3 +27,9 @@ void color(int c) {
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, c);
 }
+
+void restaurarIdiomaOriginal()
+{
+    locale original = locale::global(locale("spanish")); 
+    locale::global(original); 
+}

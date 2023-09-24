@@ -48,12 +48,15 @@ int Juego[40][120] = {
 
 };
 
-void printJuegoMatriz() {
+void printJuegoMatriz() 
+{
+	restaurarIdiomaOriginal();
+
 	for (size_t i = 0; i < 40; i++)
 	{
 		for (size_t j = 0; j < 120; j++)
 		{
-			setxy(j, i); 
+			setxy(j, i);
 
 			if (Juego[i][j] == 0) color(11); cout << char(219);
 			if (Juego[i][j] == 1) color(14); cout << char(219);
@@ -68,18 +71,37 @@ void printJuegoMatriz() {
 
 class CJuego
 {
-public:
-	CJuego() {};
-	~CJuego() {};
-	void partida() {
-		printJuegoMatriz();
-		BancoDePreguntas* arrPreguntas = new BancoDePreguntas();
+private:
+	
+	BancoDePreguntas* arrRespuestas;
 
-		Pregunta* objPregunta = new Pregunta(arrPreguntas, rand() % 9);
-		objPregunta->mostrarPregunta();
+
+	Pregunta* objPregunta;
+
+	Controladora* controladorAnimacion;
+
+public:
+
+
+	CJuego()
+	{
+		arrRespuestas = new BancoDePreguntas();
+
+		objPregunta = new Pregunta();
+
+		controladorAnimacion = new Controladora();
+
+	}
+
+	~CJuego() {}
+
+	void partida()
+	{ 
+		printJuegoMatriz();
+		objPregunta->mostrarPregunta(); 
+		objPregunta->mostrarRespuestas();
 		system("pause>0");
 		color(992);
-		Controladora* controladorAnimacion = new Controladora();
 
 		while (true) {
 			if (_kbhit()) {
@@ -90,12 +112,12 @@ public:
 				if (key == 'C') controladorAnimacion->borrarUltimaPelota();
 			}
 
-			controladorAnimacion->animacion();  
+			controladorAnimacion->animacion();
 			_sleep(150);
 		}
 
 	};
-private:
+
 
 };
 

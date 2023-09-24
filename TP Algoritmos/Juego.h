@@ -113,6 +113,7 @@ void printJuegoMatriz()
 			if (Juego[i][j] == 7) color(0); cout << char(219);
 
 		}
+		cout << endl;
 	}
 }
 void printPerdiste()
@@ -134,7 +135,7 @@ void printPerdiste()
 class CJuego
 {
 private:
-	vector<CPartida*> rondaPartidas; 
+	vector<CPartida*> rondaPartidas;
 	Tiempo* cronometro;
 	Personaje* objPersonaje;
 
@@ -163,14 +164,9 @@ public:
 	void animaPersonaje()
 	{
 		objPersonaje->borraPersonaje();
-		int eje = objPersonaje->validarMov(75, 35, 20, 16);
-		if (eje) {
-			objPersonaje->movInvalido(eje);
-		}
-		else {
-			if (kbhit()) {
-				teclado(toupper(_getch()));
-			}
+
+		if (kbhit()) {
+			teclado(toupper(_getch()));
 		}
 		objPersonaje->dibujaPersonaje();
 
@@ -190,6 +186,7 @@ public:
 			animaPersonaje(); 
 
 			rondaPartidas[0]->animacion();
+			
 
 			if (rondaPartidas[0]->verificarColisiones(objPersonaje)) 
 			{
@@ -209,7 +206,7 @@ public:
 		rondaPartidas[0]->getObjPregunta()->borrarPregunta();
 
 		rondaPartidas.erase(rondaPartidas.begin() + 0);
-		rondaPartidas.push_back(new CPartida()); 
+		rondaPartidas.push_back(new CPartida());
 		partida();
 	}
 };

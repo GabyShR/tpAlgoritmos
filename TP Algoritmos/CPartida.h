@@ -44,7 +44,6 @@ public:
 		if (identificarColision(controladorPelotas->at(0)->getX(), controladorPelotas->at(0)->getY(), controladorPelotas->at(0)->getAncho(), controladorPelotas->at(0)->getAlto(),
 			Jugador->getX(), Jugador->getY(), Jugador->getAncho(), Jugador->getAlto()))
 		{
-			setxy(60, 20); cout << "ganaste";
 			return true;
 		}
 

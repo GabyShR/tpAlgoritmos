@@ -138,6 +138,7 @@ void printOT()
 			if (OfficeTest[i][j] == 6)color(7); cout << char(219);
 			if (OfficeTest[i][j] == 7)color(3); cout << char(219);
 		}
+		cout << endl;
 	}
 
 }
@@ -150,8 +151,8 @@ void printOTMenu()
 		{
 			Console::SetCursorPosition(j, i);
 			if (OfficeTestMenu[i][j] == 0) color(14); cout << char(219);
-		}
-	}
+		}cout << endl;
+	}		
 
 }
 

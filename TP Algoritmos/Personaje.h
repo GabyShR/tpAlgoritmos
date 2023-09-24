@@ -5,7 +5,10 @@
 #define abajo 80
 #define izquierda 75
 #define derecha 77
-
+#define MAXX 75
+#define MAXY 37
+#define MINX 20
+#define MINY 16
 using namespace System;
 using namespace std;
 
@@ -43,15 +46,6 @@ public:
 		}
 	}
 
-	int validarMov(int maxx, int maxy, int minx, int miny) {
-		if (x + dx  < minx || x + w + dx >maxx) { return 1; }
-		if (y + dy  < miny || y + h + dy >maxy) { return 2; }
-	}
-	void movInvalido(int eje) {
-		if (eje == 1) { dx = -dx; }
-		if (eje == 2) { dy = -dy; }
-	}
-
 	void dibujaPersonaje()
 	{
 		for (size_t i = 0; i < h; i++)
@@ -71,8 +65,15 @@ public:
 	}
 
 	void mover(int ex, int ey) {
-		if (ex == 1) { dx = ey; x += dx; }
-		if (ex == 2) { dy = ey; y += dy; }
+
+		if (x < MINX || x + w > MAXX) dx = 0;
+		else if (y < MINY || y + h > MAXY) dy = 0;
+		else {
+			if (ex == 1) { dx = ey; }
+			if (ex == 2) { dy = ey; }
+		}
+		x += dx;
+		y += dy;
 	}
 
 

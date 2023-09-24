@@ -209,11 +209,8 @@ public:
 	void barraLateral() {
 		mostrarVidas(vidas);
 		setxy(100, 15);
-		setColor(14, 5);
-		cout << "PUNTOS: " << endl;
-		setColor(14, 6);
-		int puntos = objPersonaje->getPuntosAcumulados();
-		cout << puntos;
+		objPersonaje->mostrarPuntos();
+
 	}
 
 	void partida(bool &irAlMenu)

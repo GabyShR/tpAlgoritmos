@@ -36,6 +36,11 @@ public:
 	}
 
 	int getPuntosAcumulados() { return puntosAcumulados; }
+	void mostrarPuntos() {
+		setColor(14, 5);
+		cout << "PUNTOS: " << endl;
+		cout << puntosAcumulados;
+	}
 	void setPuntosAcumulados(int suma) { puntosAcumulados+suma; }
 	~Personaje() {}
 	void borraPersonaje()

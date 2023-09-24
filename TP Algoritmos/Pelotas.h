@@ -1,6 +1,7 @@
 #pragma once
-#include "Librerias.h"
-#pragma once
+#include "Personaje.h"
+
+
 
 class CPelota
 {
@@ -25,8 +26,11 @@ public:
 
 	float getX() { return x; }
 	float getY() { return y; }
+	float getAlto() { return alto; }
+	float getAncho() { return ancho; }
 
 	void setVelocidad(int velocidad) { this->velocidad = velocidad; }
+
 };
 
 CPelota::CPelota()
@@ -46,6 +50,8 @@ CPelota::CPelota()
 
 	this->dx = rand() % 2 == 0 ? -1 : 1;
 	this->dy = rand() % 2 == 0 ? -1 : 1;
+
+
 }
 
 CPelota::~CPelota() {}
@@ -62,16 +68,16 @@ void CPelota::borrar()
 
 void CPelota::mover()
 {
-	if (x + dx * velocidad < minX || x + dx * velocidad + ancho > WIDTH - 38) 
+	if (x + dx * velocidad < minX || x + dx * velocidad + ancho > WIDTH - 38)
 		dx *= -1;
-	if (y + dy * velocidad < minY || y + dy * velocidad + alto > HEIGHT - 2) 
+	if (y + dy * velocidad < minY || y + dy * velocidad + alto > HEIGHT - 2)
 		dy *= -1;
 
 	x += dx * velocidad;
 	y += dy * velocidad;
 }
 
-void CPelota::dibujar(char alternativa) 
+void CPelota::dibujar(char alternativa)
 {
 	restaurarIdiomaOriginal();
 
@@ -96,7 +102,7 @@ void CPelota::dibujar(char alternativa)
 
 			if (i == alto - 2 && j == ancho - 3)
 			{
-				setxy(x + j, y + i); cout << alternativa; 
+				setxy(x + j, y + i); cout << alternativa;
 			}
 		}
 	}
@@ -108,19 +114,18 @@ class Controladora
 {
 private:
 	std::vector<CPelota*> pelotas;
-
 public:
 
 	Controladora();
 	~Controladora();
 
-	void borrarPelota(short index); 
-	void verificarColisiones();
-	void animacion(char alternativa1, char alternativa2); 
+	bool verificarColisiones(Personaje* Jugador);
+	void borrarPelota(short index);
+	void animacion(char alternativa1, char alternativa2);
 
 };
 
-Controladora::Controladora() 
+Controladora::Controladora()
 {
 	int cant = 2;
 
@@ -139,43 +144,38 @@ Controladora::~Controladora()
 	pelotas.clear();
 }
 
-void Controladora::borrarPelota(short index) 
+void Controladora::borrarPelota(short index)
 {
 	pelotas.erase(pelotas.begin() + index);
 }
 
-void Controladora::verificarColisiones()
+bool Controladora::verificarColisiones(Personaje* Jugador)
 {
-	for (int i = 0; i < pelotas.size(); ++i)
+	if (identificarColision(pelotas[0]->getX(), pelotas[0]->getY(), pelotas[0]->getAncho(), pelotas[0]->getAlto(),
+		Jugador->getX(), Jugador->getY(), Jugador->getAncho(), Jugador->getAlto()))
 	{
-		CPelota* primeraPelota = pelotas.at(i);
-		for (int j = 0; j < pelotas.size(); ++j)
-		{
-			if (i == j) continue;
-			CPelota* segundaPelota = pelotas.at(j);
-
-
-			if (primeraPelota->getX() == segundaPelota->getX() &&
-				primeraPelota->getY() == segundaPelota->getY())
-			{
-				primeraPelota->borrar();
-				primeraPelota->mover();
-
-				segundaPelota->mover();
-
-			}
-		}
+		setxy(60, 20); cout << "ganaste";
+		return true;
 	}
+
+	if (identificarColision(pelotas[1]->getX(), pelotas[1]->getY(), pelotas[1]->getAncho(), pelotas[1]->getAlto(),
+		Jugador->getX(), Jugador->getY(), Jugador->getAncho(), Jugador->getAlto()))
+	{
+		setxy(60, 20); cout << "perdiste";
+		return true;
+	}
+
+	return false;
 }
 
-void Controladora::animacion(char alternativa1, char alternativa2)  
+
+void Controladora::animacion(char alternativa1, char alternativa2)
 {
-	verificarColisiones();
 
 	for (int i = 0; i < pelotas.size(); i++)
 	{
 		pelotas[i]->borrar();
-		pelotas[i]->mover(); 
+		pelotas[i]->mover();
 
 		if (i == 0) pelotas[i]->dibujar(alternativa1);
 		if (i == 1) pelotas[i]->dibujar(alternativa2);

@@ -8,89 +8,76 @@
 
 using namespace System;
 using namespace std;
-class Persona
+
+class Personaje
 {
 private:
 	int x;
 	int y;
 	int dx;
 	int dy;
+	int w;
+	int h;
+	bool movimiento;
 public:
-	Persona()
+	Personaje()
 	{
-		this->x = 0;
-		this->y = 0;
-		this->dx = 1;
-		this->dy = 1;
-	}
-	Persona(int px, int py, int pdx, int pdy)
-	{
-		this->x = px;
-		this->y = py;
-		this->dx = pdx;
-		this->dy = pdy;
-	}
-	~Persona() {}
-
-	void setx(int px) { x = px; }
-	void sety(int py) { y = py; }
-	void setdx(int pdx) { dx = pdx; }
-	void setdy(int pdy) { dy = pdy; }
-	int getx() { return x; }
-	int gety() { return y; }
-	int getdx() { return dx; }
-	int getdy() { return dy; }
-
-
-	void forma_personaje()
-	{
-		setxy(x + 1, y); cout << char(79);
-		setxy(x, y + 1); cout << char(47) << char(124) << char(92);
-		setxy(x, y + 2); cout << char(47) << " " << char(92);
-	}
-
-	void borra_personaje()
-	{
-		setxy(x + 1, y); cout << " ";
-		setxy(x, y + 1); cout << "   ";
-		setxy(x, y + 2); cout << "   ";
-	}
-
-};
-
-class Personaje : public Persona
-{
-private:
-	int perx;
-	int pery;
-	int perdx;
-	int perdy;
-public:
-	Personaje() : Persona()
-	{
-		perx = 50;
-		pery = 27;
-		perdx = 1;
-		perdy = 1;
-	}
-	Personaje(int px, int py, int pdx, int pdy, int pperx, int ppery, int pperdx, int pperdy) : Persona(px, py, pdx, pdy)
-	{
-		perx = pperx;
-		pery = ppery;
-		perdx = pperdx;
-		perdy = pperdy;
+		x = 50;
+		y = 26;
+		dx = 0;
+		dy = 0;
+		w = 3;
+		h = 3;
 	}
 
 	~Personaje() {}
-
-	void anima_personaje(char tecla)
+	void borraPersonaje()
 	{
-		borra_personaje();
-		if ((tecla == arriba) && (pery > 16)) pery -= perdy; sety(pery);
-		if ((tecla == abajo) && (pery < 35)) pery += perdy; sety(pery);
-		if ((tecla == izquierda) && (perx > 15)) perx -= perdx; setx(perx);
-		if ((tecla == derecha) && (perx < 79)) perx += perdx; setx(perx);
-		forma_personaje();
+		for (size_t i = 0; i < h; i++)
+		{
+			for (size_t j = 0; j < w; j++)
+			{
+				setxy(x + j, i + y);
+				cout << " ";
+			}
+		}
 	}
 
+	int validarMov(int maxx, int maxy, int minx, int miny) {
+		if (x + dx  < minx || x + w + dx >maxx) { return 1; }
+		if (y + dy  < miny || y + h + dy >maxy) { return 2; }
+	}
+	void movInvalido(int eje) {
+		if (eje == 1) { dx = -dx; }
+		if (eje == 2) { dy = -dy; }
+	}
+
+	void dibujaPersonaje()
+	{
+		for (size_t i = 0; i < h; i++)
+		{
+			for (size_t j = 0; j < w; j++)
+			{
+				color(992);
+				setxy(x + j, i + y);
+				if (i == 0 && j == 1)cout << char(79);
+				else if ((i == h - 2 && j == 0) || (i == h - 1 && j == 0)) cout << char(47);
+				else if ((i == h - 2 && j == w - 1) || (i == h - 1 && j == w - 1)) cout << char(92);
+				if (i == 1 && j == 1)cout << char(124);
+				else cout << ' ';
+			}
+			cout << endl;
+		}
+	}
+
+	void mover(int ex, int ey) {
+		if (ex == 1) { dx = ey; x += dx; }
+		if (ex == 2) { dy = ey; y += dy; }
+	}
+
+
+	int getX() { return x; }
+	int getY() { return y; }
+	int getAlto() { return h; }
+	int getAncho() { return w; }
 };

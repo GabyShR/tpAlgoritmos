@@ -49,7 +49,7 @@ int Juego[40][120] = {
 
 };
 
-void printJuegoMatriz() 
+void printJuegoMatriz()
 {
 	restaurarIdiomaOriginal();
 
@@ -73,41 +73,71 @@ void printJuegoMatriz()
 class CJuego
 {
 private:
-	
+
 	Pregunta* objPregunta;
 	Controladora* controladorPelotas;
 	Personaje* objPersonaje;
+	int speed;
 public:
 	CJuego()
 	{
 		objPregunta = new Pregunta();
 		controladorPelotas = new Controladora();
 		objPersonaje = new Personaje();
-
+		speed = 0;
 	}
 
 	~CJuego() {}
 
+	void teclado(char letra) {
+		switch (letra)
+		{
+		case'W': objPersonaje->mover(2, -1); break;
+		case'A': objPersonaje->mover(1, -1);  break;
+		case'S': objPersonaje->mover(2, 1);  break;
+		case'D': objPersonaje->mover(1, 1);  break;
+		default: break;
+		}
+	}
+
+
+	void animaPersonaje()
+	{
+		objPersonaje->borraPersonaje();
+		int eje = objPersonaje->validarMov(75, 35, 20, 16);
+		if (eje) {
+			objPersonaje->movInvalido(eje);
+		}
+		else {
+			if (kbhit()) {
+				teclado(toupper(_getch()));
+			}
+		}
+		objPersonaje->dibujaPersonaje();
+
+	};
 	void partida()
-	{ 
+	{
 		printJuegoMatriz();
-		objPregunta->mostrarPregunta(); 
+		objPregunta->mostrarPregunta();
 		objPregunta->mostrarRespuestas();
 		color(992);
 
-		while (true) 
+		while (true)
 		{
-			if (kbhit()) {
-				char key = _getch();
-				objPersonaje->anima_personaje(key);
-			}
-			controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
-			_sleep(120);
 
+			animaPersonaje();
+
+			controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
+
+			controladorPelotas->verificarColisiones(objPersonaje);
+			if (controladorPelotas->verificarColisiones(objPersonaje))
+			{
+				break;
+			}
+
+			_sleep(100);
 
 		}
-
 	};
-
-
 };

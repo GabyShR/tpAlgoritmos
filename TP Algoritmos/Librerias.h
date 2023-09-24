@@ -30,6 +30,14 @@ void color(int c) {
 
 void restaurarIdiomaOriginal()
 {
-    locale original = locale::global(locale("spanish")); 
-    locale::global(original); 
+    locale original = locale::global(locale("spanish"));
+    locale::global(original);
+}
+
+bool identificarColision(float x1, float y1, float ancho1, float altura1, float x2, float y2, float ancho2, float altura2)
+{
+    if (x1 <= x2 + ancho2 && x1 + ancho1 >= x2 && y1 <= y2 + altura2 && y1 + altura1 >= y2)
+        return true;
+    else
+        return false;
 }

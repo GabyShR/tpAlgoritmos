@@ -10,7 +10,7 @@ int main()
     Console::SetWindowSize(120, 40);
     Console::CursorVisible = false;
 
-   menuFinal();
+    menuFinal();
 
     system("pause>0");
     return 0;

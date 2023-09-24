@@ -4,6 +4,29 @@
 
 #define WIDTH 80
 #define HEIGHT 35
+bool irAlMenu = false;
+void menuFinal();
+
+void mostrarVidas(int& vidas)
+{
+	setColor(14,12);
+	setxy(100, 10);
+
+	switch (vidas)
+	{
+	case 1:
+		cout << char(3) << " " << " ";
+		break;
+	case 2:
+		cout << char(3) << char(3) << " ";
+		break;
+	case 3:
+		cout << char(3) << char(3) << char(3);
+		break;
+	default:
+		break;
+	}
+}
 
 
 int Juego[40][120] = {
@@ -149,6 +172,13 @@ public:
 
 	~CJuego() {}
 
+	bool victoria() {
+		return objPersonaje->getPuntosAcumulados() == 50;
+	}
+	bool derrota(int& vidas) {
+		return vidas == 0;
+	}
+
 	void teclado(char letra) {
 		//switch (letra)
 		//{
@@ -176,13 +206,23 @@ public:
 
 	};
 
-	void partida()
+	void barraLateral() {
+		mostrarVidas(vidas);
+		setxy(100, 15);
+		setColor(14, 5);
+		cout << "PUNTOS: " << endl;
+		setColor(14, 6);
+		int puntos = objPersonaje->getPuntosAcumulados();
+		cout << puntos;
+	}
+
+	void partida(bool &irAlMenu)
 	{
+		irAlMenu = false;
 		color(992);
 		rondaPartidas[0]->mostrarEnunciados();
-
-
-		while (true)
+		barraLateral();
+		while (!irAlMenu)
 		{
 
 			cronometro->mostrarTiempo();
@@ -193,17 +233,30 @@ public:
 
 			if (rondaPartidas[0]->verificarColisiones(objPersonaje))
 			{
-
-				resetearPartida();
+				if (victoria()) {
+					system("cls");
+					setxy(60, 20);
+					cout << "GANASTEEEE";
+				}
+				if (derrota(vidas)) {
+					printPerdiste();
+					irAlMenu = true;
+				}
+				else {
+					resetearPartida();
+				}
 			}
 
 			_sleep(60);
 
 		}
+
+		if (irAlMenu) menuFinal();
 	};
 
 	void resetearPartida()
 	{
+		objPersonaje->setPuntosAcumulados(10);
 		rondaPartidas[0]->getControladorPelotas()->at(0)->borrar();
 		rondaPartidas[0]->getControladorPelotas()->at(1)->borrar();
 		rondaPartidas[0]->getObjPregunta()->borrarPregunta();
@@ -211,6 +264,6 @@ public:
 
 		rondaPartidas.erase(rondaPartidas.begin() + 0);
 		rondaPartidas.push_back(new CPartida());
-		partida();
+		partida(irAlMenu);
 	}
 };

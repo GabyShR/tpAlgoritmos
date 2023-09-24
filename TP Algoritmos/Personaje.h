@@ -21,7 +21,7 @@ private:
 	int dy;
 	int w;
 	int h;
-	bool movimiento;
+	int puntosAcumulados;
 public:
 	Personaje()
 	{
@@ -31,8 +31,12 @@ public:
 		dy = 1;
 		w = 3;
 		h = 3;
+		puntosAcumulados = 0;
+		
 	}
 
+	int getPuntosAcumulados() { return puntosAcumulados; }
+	void setPuntosAcumulados(int suma) { puntosAcumulados+suma; }
 	~Personaje() {}
 	void borraPersonaje()
 	{

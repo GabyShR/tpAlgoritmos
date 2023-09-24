@@ -157,11 +157,8 @@ void Controladora::borrarPelota(short index)
 
 CPelota* Controladora::at(int index)
 {
-	return pelotas[index]; 
+	return pelotas[index];
 }
-
-
-
 
 void Controladora::animacion(char alternativa1, char alternativa2)
 {

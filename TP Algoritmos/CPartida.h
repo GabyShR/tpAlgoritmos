@@ -6,7 +6,6 @@
 
 int vidas = 3;
 
-
 class CPartida
 {
 private:
@@ -51,7 +50,6 @@ public:
 			Jugador->getX(), Jugador->getY(), Jugador->getAncho(), Jugador->getAlto()))
 		{
 			vidas--;
-			setxy(60, 20); cout << "perdiste";
 			return true;
 		}
 

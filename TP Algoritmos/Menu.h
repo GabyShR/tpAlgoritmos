@@ -1,7 +1,6 @@
 #include "Librerias.h"
 #include "Juego.h"
 
-
 char cuadradito() {
 	return (char(220));
 }
@@ -201,7 +200,7 @@ void moverPuntero(int& xP, int& yP, int& dyP, bool& mostrarPuntero)
 			Console::Clear();
 			CJuego* objJuego = new CJuego();
 			printJuegoMatriz();
-			objJuego->partida();
+			objJuego->partida(irAlMenu);
 			//if (ir_al_Menu == true) menuFinal();
 
 		}

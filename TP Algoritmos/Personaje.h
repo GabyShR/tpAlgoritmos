@@ -36,12 +36,13 @@ public:
 	}
 
 	int getPuntosAcumulados() { return puntosAcumulados; }
+	void setPuntosAcumulados(int suma) { puntosAcumulados += suma; }
 	void mostrarPuntos() {
-		setColor(14, 5);
-		cout << "PUNTOS: " << endl;
+		setColor(14, 0);
+		cout << "PUNTOS: ";
+		setColor(14, 1);
 		cout << puntosAcumulados;
 	}
-	void setPuntosAcumulados(int suma) { puntosAcumulados+suma; }
 	~Personaje() {}
 	void borraPersonaje()
 	{

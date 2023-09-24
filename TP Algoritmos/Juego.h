@@ -234,6 +234,8 @@ public:
 					system("cls");
 					setxy(60, 20);
 					cout << "GANASTEEEE";
+					system("pause>0");
+					irAlMenu = true;
 				}
 				if (derrota(vidas)) {
 					printPerdiste();

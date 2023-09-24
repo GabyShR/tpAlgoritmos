@@ -44,7 +44,7 @@ CPelota::CPelota()
 	this->minY = 16;
 
 	this->x = r.Next(minX, WIDTH - 38 - ancho);
-	this->y = r.Next(minY, HEIGHT - 2 - alto);
+	this->y = r.Next(minY, HEIGHT - 7 - alto);
 
 	this->dx = rand() % 2 == 0 ? -1 : 1;
 	this->dy = rand() % 2 == 0 ? -1 : 1;

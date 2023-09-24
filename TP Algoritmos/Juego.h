@@ -2,6 +2,7 @@
 #include "Pregunta.h"
 #include "Pelotas.h"
 #include "Personaje.h"
+#include "Tiempo.h" 
 
 #define WIDTH 80
 #define HEIGHT 35
@@ -77,14 +78,15 @@ private:
 	Pregunta* objPregunta;
 	Controladora* controladorPelotas;
 	Personaje* objPersonaje;
-	int speed;
+	Tiempo* cronometro;
+
 public:
 	CJuego()
 	{
 		objPregunta = new Pregunta();
 		controladorPelotas = new Controladora();
 		objPersonaje = new Personaje();
-		speed = 0;
+		cronometro = new Tiempo();
 	}
 
 	~CJuego() {}
@@ -125,7 +127,7 @@ public:
 
 		while (true)
 		{
-
+			cronometro->mostrarTiempo();
 			animaPersonaje();
 
 			controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
@@ -136,7 +138,7 @@ public:
 				break;
 			}
 
-			_sleep(100);
+			_sleep(60);
 
 		}
 	};

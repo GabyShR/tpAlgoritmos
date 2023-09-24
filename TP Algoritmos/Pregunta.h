@@ -73,7 +73,7 @@ private:
 
 	string pregunta;
 	BancoDePreguntas* arrPreguntas;
-	string respuesta;
+
 	string respuestaCorrecta;
 	BancoDePreguntas* arrRespuestasCorrectas;
 	string respuestaIncorrecta;
@@ -123,7 +123,7 @@ public:
 			setxy(x, y);
 			cout << alternativa[i];
 
-			if (x == WIDTH - 3) {
+			if (x == WIDTH - 4) {
 				cout << '\n';
 				y++;
 				x = WIDTH - 20;

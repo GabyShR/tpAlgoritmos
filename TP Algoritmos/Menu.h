@@ -1,6 +1,7 @@
 #include "Librerias.h"
 #include "Juego.h"
 
+
 char cuadradito() {
 	return (char(220));
 }

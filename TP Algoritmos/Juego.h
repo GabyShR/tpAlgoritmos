@@ -72,7 +72,6 @@ void printJuegoMatriz()
 class CJuego
 {
 private:
-
 	vector<CPartida*> rondaPartidas; 
 	Tiempo* cronometro;
 	Personaje* objPersonaje;
@@ -117,7 +116,7 @@ public:
 
 	void partida()
 	{
-		printJuegoMatriz();
+		//printJuegoMatriz();
 		color(992);
 		rondaPartidas[0]->mostrarEnunciados();
 
@@ -142,6 +141,9 @@ public:
 
 	void resetearPartida()
 	{
+		rondaPartidas[0]->getControladorPelotas()->at(0)->borrar();
+		rondaPartidas[0]->getControladorPelotas()->at(1)->borrar();
+
 		rondaPartidas.erase(rondaPartidas.begin() + 0);
 		rondaPartidas.push_back(new CPartida()); 
 		partida();

@@ -20,7 +20,8 @@ public:
 
 	~CPartida() {}
 
-	Controladora* getControladorPelotas() {
+	Controladora* getControladorPelotas() 
+	{
 		return controladorPelotas;
 	}
 

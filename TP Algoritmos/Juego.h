@@ -1,6 +1,7 @@
 #include "Librerias.h"
 #include "Pregunta.h"
 #include "Pelotas.h"
+#include "Personaje.h"
 
 #define WIDTH 80
 #define HEIGHT 35
@@ -75,12 +76,14 @@ private:
 	
 	Pregunta* objPregunta;
 	Controladora* controladorPelotas;
-
+	Personaje* objPersonaje;
 public:
 	CJuego()
 	{
 		objPregunta = new Pregunta();
 		controladorPelotas = new Controladora();
+		objPersonaje = new Personaje();
+
 	}
 
 	~CJuego() {}
@@ -96,21 +99,11 @@ public:
 		{
 			controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
 			_sleep(120);
+			objPersonaje->anima_personaje(_getch());
+
 		}
 
 	};
 
 
 };
-
-
-
-
-
-
-
-
-
-
-
-

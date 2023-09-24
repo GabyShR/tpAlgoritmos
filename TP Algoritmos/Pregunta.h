@@ -174,37 +174,3 @@ public:
 	}
 
 };
-
-
-//class ArrPreguntaRespondidas
-//{
-//public:
-//	ArrPreguntaRespondidas();
-//	~ArrPreguntaRespondidas();
-//	void agregarPregunta(Pregunta* objPregunta);
-//	//bool preguntaRespondida();
-//	void listarPreguntas();
-//private:
-//	vector<Pregunta* >ArrPregRespondidas;
-//};
-//
-//ArrPreguntaRespondidas::ArrPreguntaRespondidas()
-//{
-//}
-//
-//void ArrPreguntaRespondidas::listarPreguntas() {
-//	for (size_t i = 0; i < ArrPregRespondidas.size(); i++)
-//	{
-//		cout << "PREGUNTA " << i << endl;
-//		ArrPregRespondidas.at(i)->mostrar(); cout << endl;
-//	}
-//}
-//void ArrPreguntaRespondidas::agregarPregunta(Pregunta* objPregunta) {
-//	ArrPregRespondidas.push_back(objPregunta);
-//}
-////bool ArrPreguntaRespondidas::preguntaRespondida() {
-////
-////}
-//ArrPreguntaRespondidas::~ArrPreguntaRespondidas()
-//{
-//}

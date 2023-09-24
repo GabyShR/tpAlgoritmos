@@ -130,6 +130,15 @@ Controladora::Controladora()
 	{
 		pelotas.push_back(new CPelota());
 	}
+
+	do
+	{
+		for (int i = 0; i < cant; i++)
+		{
+			pelotas[i] = new CPelota(); 
+		}
+
+	} while (pelotas[0]->getX() + pelotas[0]->getAncho() == pelotas[1]->getX() + pelotas[1]->getAncho()); 
 }
 
 Controladora::~Controladora()

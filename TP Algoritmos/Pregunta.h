@@ -172,4 +172,25 @@ public:
 			x++;
 		}
 	}
+	void borrarPregunta()
+	{
+		setlocale(LC_ALL, "spanish");
+		int length = pregunta.length();
+		int x = 31;
+		int y = 7;
+		setColor(11,11);
+		for (int i = 0; i < length; i++) {
+			setxy(x, y);
+			cout << " ";
+
+			if (x == 65)
+			{
+				cout << '\n';
+				y++;
+				x = 30;
+			}
+			x++;
+		}
+	}
+
 };

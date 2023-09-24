@@ -28,6 +28,12 @@ void color(int c) {
     SetConsoleTextAttribute(hConsole, c);
 }
 
+void setColor(int bgColor, int textColor) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    int colorCode = bgColor * 16 + textColor;
+    SetConsoleTextAttribute(hConsole, colorCode);
+}
+
 void restaurarIdiomaOriginal()
 {
     locale original = locale::global(locale("spanish"));

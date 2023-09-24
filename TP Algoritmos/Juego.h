@@ -143,6 +143,7 @@ public:
 	{
 		rondaPartidas[0]->getControladorPelotas()->at(0)->borrar();
 		rondaPartidas[0]->getControladorPelotas()->at(1)->borrar();
+		rondaPartidas[0]->getObjPregunta()->borrarPregunta();
 
 		rondaPartidas.erase(rondaPartidas.begin() + 0);
 		rondaPartidas.push_back(new CPartida()); 

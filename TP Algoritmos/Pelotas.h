@@ -1,8 +1,6 @@
 #pragma once
 #include "Personaje.h"
 
-
-
 class CPelota
 {
 private:
@@ -119,10 +117,9 @@ public:
 	Controladora();
 	~Controladora();
 
-	bool verificarColisiones(Personaje* Jugador);
 	void borrarPelota(short index);
 	void animacion(char alternativa1, char alternativa2);
-
+	CPelota* at(int index);
 };
 
 Controladora::Controladora()
@@ -149,24 +146,12 @@ void Controladora::borrarPelota(short index)
 	pelotas.erase(pelotas.begin() + index);
 }
 
-bool Controladora::verificarColisiones(Personaje* Jugador)
+CPelota* Controladora::at(int index)
 {
-	if (identificarColision(pelotas[0]->getX(), pelotas[0]->getY(), pelotas[0]->getAncho(), pelotas[0]->getAlto(),
-		Jugador->getX(), Jugador->getY(), Jugador->getAncho(), Jugador->getAlto()))
-	{
-		setxy(60, 20); cout << "ganaste";
-		return true;
-	}
-
-	if (identificarColision(pelotas[1]->getX(), pelotas[1]->getY(), pelotas[1]->getAncho(), pelotas[1]->getAlto(),
-		Jugador->getX(), Jugador->getY(), Jugador->getAncho(), Jugador->getAlto()))
-	{
-		setxy(60, 20); cout << "perdiste";
-		return true;
-	}
-
-	return false;
+	return pelotas[index]; 
 }
+
+
 
 
 void Controladora::animacion(char alternativa1, char alternativa2)

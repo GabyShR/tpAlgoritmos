@@ -1,8 +1,6 @@
 #include "Librerias.h"
-#include "Pregunta.h"
-#include "Pelotas.h"
-#include "Personaje.h"
 #include "Tiempo.h" 
+#include "CPartida.h"  
 
 #define WIDTH 80
 #define HEIGHT 35
@@ -75,16 +73,15 @@ class CJuego
 {
 private:
 
-	Pregunta* objPregunta;
-	Controladora* controladorPelotas;
-	Personaje* objPersonaje;
+	vector<CPartida*> rondaPartidas; 
 	Tiempo* cronometro;
+	Personaje* objPersonaje;
 
 public:
 	CJuego()
 	{
-		objPregunta = new Pregunta();
-		controladorPelotas = new Controladora();
+		rondaPartidas.push_back(new CPartida());
+
 		objPersonaje = new Personaje();
 		cronometro = new Tiempo();
 	}
@@ -102,7 +99,6 @@ public:
 		}
 	}
 
-
 	void animaPersonaje()
 	{
 		objPersonaje->borraPersonaje();
@@ -118,28 +114,36 @@ public:
 		objPersonaje->dibujaPersonaje();
 
 	};
+
 	void partida()
 	{
 		printJuegoMatriz();
-		objPregunta->mostrarPregunta();
-		objPregunta->mostrarRespuestas();
 		color(992);
+		rondaPartidas[0]->mostrarEnunciados();
 
 		while (true)
 		{
-			cronometro->mostrarTiempo();
-			animaPersonaje();
+			cronometro->mostrarTiempo(); 
+			animaPersonaje(); 
 
-			controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
+			rondaPartidas[0]->animacion();
+			
 
-			controladorPelotas->verificarColisiones(objPersonaje);
-			if (controladorPelotas->verificarColisiones(objPersonaje))
+			if (rondaPartidas[0]->verificarColisiones(objPersonaje)) 
 			{
-				break;
+
+				resetearPartida();
 			}
 
 			_sleep(60);
 
 		}
 	};
+
+	void resetearPartida()
+	{
+		rondaPartidas.erase(rondaPartidas.begin() + 0);
+		rondaPartidas.push_back(new CPartida()); 
+		partida();
+	}
 };

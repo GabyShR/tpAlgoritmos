@@ -88,7 +88,6 @@ public:
 	}
 
 
-
 	void mover(int ex, int ey) {
 		if (ex == 1) { dx = ey; x += dx; }
 		if (ex == 2) { dy = ey; y += dy; }

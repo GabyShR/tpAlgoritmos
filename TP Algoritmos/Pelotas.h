@@ -120,7 +120,7 @@ public:
 	Controladora();
 	~Controladora();
 
-	int verificarColisiones(Personaje* Jugador);
+	bool verificarColisiones(Personaje* Jugador);
 	void borrarPelota(short index);
 	void animacion(char alternativa1, char alternativa2);
 
@@ -150,26 +150,33 @@ void Controladora::borrarPelota(short index)
 	pelotas.erase(pelotas.begin() + index);
 }
 
-int Controladora::verificarColisiones(Personaje* Jugador) {
+bool Controladora::verificarColisiones(Personaje* Jugador) {
 	EntidadArea* jugadorArea = Jugador->getArea();
+
 	for (int i = 0; i < pelotas.size(); ++i)
 	{
-		CPelota* primeraPelota = pelotas.at(i);
-		EntidadArea* primeraArea = primeraPelota->getArea();
+		CPelota* pelota = pelotas.at(i);
+		EntidadArea* pelotaArea = pelota->getArea();
 
-		for (int j = 0; j < pelotas.size(); ++j)
-		{
+		if (pelotaArea->colisionaCon(jugadorArea)) {
+			if (i == 0) {
+				cout << "Ganaste" << endl;
+				return !pelotas.empty();
 
-			if (i == j) continue;
-			CPelota* segundaPelota = pelotas.at(j);
-			EntidadArea* segundaArea = segundaPelota->getArea();
+			}
+			else if (i == 1) {
+				cout << "Perdiste" << endl;
+				return !pelotas.empty();
 
-
-			if (primeraArea->colisionaCon(jugadorArea)) return 1;
-			if (segundaArea->colisionaCon(jugadorArea)) return 2;
+			}
+			pelotas.erase(pelotas.begin() + i);
 		}
-	}return 0;
+	}
+
+	return pelotas.empty();
 }
+
+
 
 
 void Controladora::animacion(char alternativa1, char alternativa2)

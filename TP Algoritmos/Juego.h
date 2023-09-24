@@ -103,7 +103,7 @@ public:
 	void animaPersonaje()
 	{
 		objPersonaje->borraPersonaje();
-		int eje = objPersonaje->validarMov(75, 35, 20, 16);
+		int eje = objPersonaje->validarMov(79, 35, 15, 16);
 		if (eje) {
 			objPersonaje->movInvalido(eje);
 		}
@@ -115,6 +115,8 @@ public:
 		objPersonaje->dibujaPersonaje();
 
 	};
+
+
 	void partida()
 	{
 		printJuegoMatriz();
@@ -124,21 +126,14 @@ public:
 
 		while (true)
 		{
-
 			animaPersonaje();
 
 			controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
+			bool hayColision = controladorPelotas->verificarColisiones(objPersonaje);
 
-			controladorPelotas->verificarColisiones(objPersonaje);
-
-			if (controladorPelotas->verificarColisiones(objPersonaje)) {
-				int eje = controladorPelotas->verificarColisiones(objPersonaje);
-				if (eje == 1) setxy(60, 20); cout << "ganaste"; break;
-				if (eje == 2) setxy(60, 20); cout << "perdiste"; break;
-			}
-
+			if (hayColision)
+				break;
 			_sleep(100);
-
 		}
 	};
 };

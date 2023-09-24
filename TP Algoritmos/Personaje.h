@@ -23,7 +23,7 @@ public:
 	Personaje()
 	{
 		x = 50;
-		y = 26;
+		y = 33;
 		dx = 0;
 		dy = 0;
 		w = 3;

@@ -238,14 +238,18 @@ private:
 	vector<CPartida*> rondaPartidas;
 	Tiempo* cronometro;
 	Personaje* objPersonaje;
-
+	Aliado* objAliado;
+	int numeroRonda;
+	bool aliadoCogido;
 public:
 	CJuego()
 	{
 		rondaPartidas.push_back(new CPartida());
-
 		objPersonaje = new Personaje();
 		cronometro = new Tiempo();
+		objAliado = new Aliado();
+		numeroRonda = 0;
+		aliadoCogido = false;
 	}
 
 	~CJuego() {}
@@ -271,7 +275,6 @@ public:
 		if (kbhit()) {
 			teclado(toupper(_getch()));
 		}
-
 		objPersonaje->dibujar();
 
 	};
@@ -280,7 +283,6 @@ public:
 		mostrarVidas(vidas);
 		setxy(100, 15);
 		objPersonaje->mostrarPuntos();
-
 	}
 
 	void partida(bool &irAlMenu)
@@ -292,14 +294,23 @@ public:
 		barraLateral();
 		while (!irAlMenu)
 		{
-
+			if (numeroRonda >= 3 && !aliadoCogido) {
+				objAliado->borrar();
+				int eje;
+				eje = objAliado->validarMov(60,35,15,16);
+				if (eje) {
+					objAliado->movInvalido(eje);
+				}
+				objAliado->mover();
+				objAliado->dibujar();
+			}
 			cronometro->mostrarTiempo();
 			animaPersonaje();
 
 			rondaPartidas[0]->animacion();
 
 
-			if (rondaPartidas[0]->verificarColisiones(objPersonaje))
+			if (rondaPartidas[0]->verificarColisiones(objPersonaje, objAliado, aliadoCogido))
 			{
 				if (victoria()) {
 					printYouWin();
@@ -325,6 +336,7 @@ public:
 
 	void resetearPartida()
 	{
+		numeroRonda++;
 		rondaPartidas[0]->getControladorPelotas()->at(0)->borrar();
 		rondaPartidas[0]->getControladorPelotas()->at(1)->borrar();
 		rondaPartidas[0]->getObjPregunta()->borrarPregunta();

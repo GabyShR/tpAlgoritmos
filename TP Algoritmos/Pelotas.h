@@ -4,8 +4,8 @@
 class CPelota
 {
 private:
-	float x, y;
-	float dx, dy;
+	int x, y;
+	int dx, dy;
 	short alto, ancho;
 	int velocidad;
 	char alternativa;

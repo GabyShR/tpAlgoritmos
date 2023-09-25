@@ -4,6 +4,7 @@
 #include "Pelotas.h"
 #include "Personaje.h"
 #include "Aliado.h"
+
 int vidas = 3;
 
 class CPartida
@@ -12,6 +13,7 @@ private:
 
 	Pregunta* objPregunta;
 	Controladora* controladorPelotas;
+	Aliado* objAliado;
 
 public:
 	CPartida()
@@ -22,7 +24,7 @@ public:
 
 	~CPartida() {}
 
-	Controladora* getControladorPelotas() 
+	Controladora* getControladorPelotas()
 	{
 		return controladorPelotas;
 	}
@@ -31,13 +33,13 @@ public:
 		return objPregunta;
 
 	}
-	
+
 	void animacion()
 	{
 		controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
 	}
 
-	bool verificarColisiones(Personaje* Jugador)
+	bool verificarColisiones(Personaje* Jugador, Aliado* Aliado, bool AliadoCogido)
 	{
 
 		if (identificarColision(controladorPelotas->at(0)->getX(), controladorPelotas->at(0)->getY(), controladorPelotas->at(0)->getAncho(), controladorPelotas->at(0)->getAlto(),
@@ -54,12 +56,19 @@ public:
 			return true;
 		}
 
+		if (identificarColision(Jugador->getX(), Jugador->getY(), Jugador->getAncho(), Jugador->getAlto(), Aliado->getX(), Aliado->getY(), Aliado->getAncho(), Aliado->getAlto())) {
+			AliadoCogido = true;
+				vidas++;
+				return true;
+		}
+
+
 		return false;
 	}
 
 	void mostrarEnunciados()
 	{
 		objPregunta->mostrarPregunta();
-		objPregunta->mostrarRespuestas();  
+		objPregunta->mostrarRespuestas();
 	}
 };

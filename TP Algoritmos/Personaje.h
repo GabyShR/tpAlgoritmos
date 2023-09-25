@@ -40,25 +40,18 @@ public:
         for (size_t i = 0; i < h; i++) {
             for (size_t j = 0; j < w; j++) {
                 setxy(x + j, i + y);
+                setColor(14, 9);
                 cout << char(219);
             }
         }
     }
-    virtual int getX() {
-        return x;
-    }
+    virtual int getX() {return x;}
 
-    virtual int getY() {
-        return y;
-    }
+    virtual int getY() { return y; }
 
-    virtual int getAncho() {
-        return w;
-    }
+    virtual int getAncho() { return w;}
 
-    virtual int getAlto() {
-        return h;
-    }
+    virtual int getAlto() { return h;}
 
 };
 

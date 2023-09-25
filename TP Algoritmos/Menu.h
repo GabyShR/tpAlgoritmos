@@ -1,6 +1,6 @@
 #include "Librerias.h"
 #include "Juego.h"
-
+#include "Creditos.h"
 char cuadradito() {
 	return (char(220));
 }
@@ -267,7 +267,10 @@ void moverPuntero(int& xP, int& yP, int& dyP, bool& mostrarPuntero)
 		{
 			mostrarPuntero = false;
 			Console::Clear();
-			//skin();
+			CCreditos* creditos = new CCreditos();
+			dibujarFondo();
+			color(992);
+			creditos->animarCreditos();
 		}
 		if (tecla == ENTER && yP == 31)
 		{

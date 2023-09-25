@@ -21,7 +21,6 @@ public:
 	int getAlto();
 	int getY();
 
-	void setXY(int x, int y);
 
 	void borrar();
 	void mover();
@@ -53,11 +52,6 @@ int CIntegrante::getY()
 }
 
 
-void CIntegrante::setXY(int x, int y)
-{
-	setxy(x, y);
-}
-
 
 void CIntegrante::borrar()
 {
@@ -77,27 +71,176 @@ void  CIntegrante::mover()
 
 void  CIntegrante::dibujarJahaziel()
 {
-	setXY(x, y);	 cout << "     _          _                  _         _      ___                                  ";
-	setXY(x, y + 1); cout << "  _ | |  __ _  | |_    __ _   ___ (_)  ___  | |    / __|  _  _   ___   _ _   _ _   __ _  ";
-	setXY(x, y + 2); cout << " | || | / _` | | ' \\  / _` | |_ / | | / -_) | |   | (_ | | || | / -_) | '_| | '_| / _` |";
-	setXY(x, y + 3); cout << "  \\__/  \\__,_| |_||_| \\__,_| /__| |_| \\___| |_|    \\___| \\_,_ | \\___| |_|   |_|   \\__,_|";
+	setxy(x, y);	 cout << "     _          _                  _         _      ___                                  ";
+	setxy(x, y + 1); cout << "  _ | |  __ _  | |_    __ _   ___ (_)  ___  | |    / __|  _  _   ___   _ _   _ _   __ _  ";
+	setxy(x, y + 2); cout << " | || | / _` | | ' \\  / _` | |_ / | | / -_) | |   | (_ | | || | / -_) | '_| | '_| / _` |";
+	setxy(x, y + 3); cout << "  \\__/  \\__,_| |_||_| \\__,_| /__| |_| \\___| |_|    \\___| \\_,_ | \\___| |_|   |_|   \\__,_|";
 }
 
 void  CIntegrante::dibujarDayro()
 {
-	setXY(x, y + 1); cout << "  ___                                ___   _             ";
-	setXY(x, y + 2); cout << " |   \\   __ _   _  _   _ _   ___    | _ \\ (_)  ___   ___ ";
-	setXY(x, y + 3); cout << " | |) | / _` | | || | | '_| / _ \\   |   / | | / _ \\ (_-< ";
-	setXY(x, y + 4); cout << " |___/  \\__,_| \\_,| | |_ |  \\___/   |_|_\\ |_| \\___/ /__/ ";
-	setXY(x, y + 5); cout << "                |__/                                     ";
+	setxy(x, y + 1); cout << "  ___                                ___   _             ";
+	setxy(x, y + 2); cout << " |   \\   __ _   _  _   _ _   ___    | _ \\ (_)  ___   ___ ";
+	setxy(x, y + 3); cout << " | |) | / _` | | || | | '_| / _ \\   |   / | | / _ \\ (_-< ";
+	setxy(x, y + 4); cout << " |___/  \\__,_| \\_,| | |_ |  \\___/   |_|_\\ |_| \\___/ /__/ ";
+	setxy(x, y + 5); cout << "                |__/                                     ";
 }
 
 void  CIntegrante::dibujarGabriela()
 {
-	setXY(x, y);     cout << "   ___          _            _         _            ___   _                    _                        ";
-	setXY(x, y + 1); cout << "  / __|  __ _  | |__   _ _  (_)  ___  | |  __ _    / __| | |_    __ _   _ __  (_)  __ _   _ __    __ _  ";
-	setXY(x, y + 2); cout << " | (_ | / _` | | '_ \\ | '_| | | / -_) | | / _` |   \\__ \\ | ' \\  / _` | | '_ \\ | | / _` | | '  \\  / _` | ";
-	setXY(x, y + 3); cout << "  \\___| \\__,_| |_.__/ |_|   |_| \\___| |_| \\__,_|   |___/ |_||_| \\__,_| | .__/ |_| \\__,_| |_|_|_| \\__,_| ";
-	setXY(x, y + 4); cout << "                                                                       |_|                              ";
+	setxy(x, y);     cout << "   ___          _            _         _            ___   _                    _                        ";
+	setxy(x, y + 1); cout << "  / __|  __ _  | |__   _ _  (_)  ___  | |  __ _    / __| | |_    __ _   _ __  (_)  __ _   _ __    __ _  ";
+	setxy(x, y + 2); cout << " | (_ | / _` | | '_ \\ | '_| | | / -_) | | / _` |   \\__ \\ | ' \\  / _` | | '_ \\ | | / _` | | '  \\  / _` | ";
+	setxy(x, y + 3); cout << "  \\___| \\__,_| |_.__/ |_|   |_| \\___| |_| \\__,_|   |___/ |_||_| \\__,_| | .__/ |_| \\__,_| |_|_|_| \\__,_| ";
+	setxy(x, y + 4); cout << "                                                                       |_|                              ";
 
 }
+
+class CCreditos
+{
+private:
+	CIntegrante* jahaziel;
+	CIntegrante* dayro;
+	CIntegrante* gabriela;
+public:
+	CCreditos();
+	~CCreditos();
+
+	void animarCreditos();
+
+	void escribirCreditos();
+};
+
+CCreditos::CCreditos()
+{
+	jahaziel = new CIntegrante(4, 88); // alto - ancho 
+	dayro = new CIntegrante(5, 54);
+	gabriela = new CIntegrante(5, 103);
+}
+
+CCreditos::~CCreditos()
+{
+	delete jahaziel;
+	delete dayro;
+	delete gabriela;
+}
+
+void CCreditos::escribirCreditos()
+{
+	int ancho = 70;
+	int x = (WIDTH - ancho) / 2;
+	int y = 1;
+
+	short colorRandom = rand() % 6;
+
+	int matriz[13][70] =
+	{
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	{1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+	{0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+	{0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0},
+	{1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1},
+
+	};
+
+	for (int f = 0; f < 13; f++)
+	{
+		for (int c = 0; c < ancho; c++)
+		{
+			setxy(x + c, y + f);
+			switch (matriz[f][c])
+			{
+			case 0: setColor(14,colorRandom); cout << char(219); break;
+			}
+		}
+	}
+
+}
+void dibujarFondo()
+{
+	color(14);
+	for (int i = 0; i < WIDTH; i++)
+	{
+		for (int j = 0; j < HEIGHT; j++)
+		{
+			setxy(i, j); cout << char(219);
+		}
+	}
+}
+
+void CCreditos::animarCreditos()
+{
+
+	short diferencia = 3;
+	short limiteY = 16;
+
+	bool jahazielBool = true;
+	bool dayroBool = false;
+	bool gabyBool = false;
+
+	escribirCreditos();
+	setColor(14, 0);
+	while (true)
+	{
+		if (jahazielBool)
+		{
+			jahaziel->borrar();
+			jahaziel->mover();
+			jahaziel->dibujarJahaziel();
+
+			if (jahaziel->getY() == limiteY)
+			{
+				jahazielBool = false;
+				dayroBool = true;
+			}
+		}
+
+		if (dayroBool)
+		{
+			dayro->borrar();
+			dayro->mover();
+			dayro->dibujarDayro();
+
+			if (dayro->getY() == limiteY + jahaziel->getAlto() + diferencia)
+			{
+				dayroBool = false;
+				gabyBool = true;
+			}
+		}
+
+		if (gabyBool)
+		{
+			gabriela->borrar();
+			gabriela->mover();
+			gabriela->dibujarGabriela();
+
+
+			if (gabriela->getY() == limiteY + jahaziel->getAlto() + diferencia + dayro->getAlto() + diferencia)
+			{
+				gabyBool = false;
+				break;
+			}
+		}
+
+		_sleep(10);
+	}
+
+	while (true)
+	{
+		escribirCreditos();
+		jahaziel->dibujarJahaziel();
+		gabriela->dibujarGabriela();
+		dayro->dibujarDayro();
+		_sleep(120);
+	}
+}
+
+

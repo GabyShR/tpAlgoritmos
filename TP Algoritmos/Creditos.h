@@ -107,7 +107,6 @@ public:
 	~CCreditos();
 
 	void animarCreditos();
-
 	void escribirCreditos();
 };
 
@@ -233,13 +232,18 @@ void CCreditos::animarCreditos()
 		_sleep(10);
 	}
 
-	while (true)
+	int n = 15;
+
+	while (n)
 	{
 		escribirCreditos();
 		jahaziel->dibujarJahaziel();
 		gabriela->dibujarGabriela();
 		dayro->dibujarDayro();
 		_sleep(120);
+
+		n--; 
+
 	}
 }
 

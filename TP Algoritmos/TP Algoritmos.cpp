@@ -15,7 +15,3 @@ int main()
     system("pause>0");
     return 0;
 }
-
-//AREA DONDE LAS PELOTAS SE VAN A MOVER
-//16,17 - 79,17
-//16,34 - 79,34

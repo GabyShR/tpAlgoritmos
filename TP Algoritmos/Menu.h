@@ -271,6 +271,8 @@ void moverPuntero(int& xP, int& yP, int& dyP, bool& mostrarPuntero)
 			dibujarFondo();
 			color(992);
 			creditos->animarCreditos();
+			system("pause>0");
+			menuFinal();
 		}
 		if (tecla == ENTER && yP == 31)
 		{

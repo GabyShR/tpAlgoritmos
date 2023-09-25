@@ -26,9 +26,6 @@
     <ClInclude Include="pch.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="CMenu.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Tiempo.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>

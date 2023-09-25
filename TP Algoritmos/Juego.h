@@ -21,8 +21,6 @@ void playmusic() {
 	if (music == 7) PlaySound(TEXT("triciclo.wav"), NULL, SND_ASYNC);
 
 }
-#define WIDTH 80
-#define HEIGHT 35
 
 bool irAlMenu = false;
 void menuFinal();

@@ -302,6 +302,12 @@ public:
 				objAliado->mover();
 				objAliado->dibujar();
 			}
+			if (aliadoCogido) {
+				objAliado->borrar();
+				objAliado->setX(1);
+				objAliado->setY(3);
+				objAliado->setDx(0);
+			}
 
 			cronometro->mostrarTiempo();
 			animaPersonaje();

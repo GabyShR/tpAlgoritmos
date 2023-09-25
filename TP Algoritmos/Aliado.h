@@ -16,6 +16,9 @@ public:
 	void Aliado::mover() {
 		x += dx;
 	}
+	void Aliado::setX(int px) { x = px; }
+	void Aliado::setY(int py) { x = py; }
+	void Aliado::setDx(int pdx) { dx = pdx; }
 	~Aliado() {}
 
 private:

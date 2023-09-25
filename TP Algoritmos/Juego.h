@@ -266,13 +266,13 @@ public:
 
 	void animaPersonaje()
 	{
-		objPersonaje->borraPersonaje();
+		objPersonaje->borrar();
 
 		if (kbhit()) {
 			teclado(toupper(_getch()));
 		}
 
-		objPersonaje->dibujaPersonaje();
+		objPersonaje->dibujar();
 
 	};
 

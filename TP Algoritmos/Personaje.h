@@ -9,107 +9,112 @@
 #define MAXY 37
 #define MINX 20
 #define MINY 16
+
 using namespace System;
 using namespace std;
 
-class Personaje
-{
-private:
-	int x;
-	int y;
-	int dx;
-	int dy;
-	int w;
-	int h;
-	int puntosAcumulados;
+class CMovil {
+protected:
+    int x;
+    int y;
+    int dx;
+    int dy;
+    int w;
+    int h;
+
 public:
-	Personaje()
-	{
-		x = 50;
-		y = 33;
-		dx = 1;
-		dy = 1;
-		w = 3;
-		h = 3;
-		puntosAcumulados = 0;
-		
-	}
+    CMovil(int px, int py, int pdx, int pdy, int pw, int ph) : x(px), y(py), dx(pdx), dy(pdy), w(pw), h(ph) {}
 
-	int getPuntosAcumulados() { return puntosAcumulados; }
-	void setPuntosAcumulados(int suma) { puntosAcumulados += suma; }
-	void mostrarPuntos() {
-		setColor(14, 0);
-		cout << "PUNTOS: ";
-		setColor(14, 1);
-		cout << puntosAcumulados;
-	}
-	~Personaje() {}
-	void borraPersonaje()
-	{
-		for (size_t i = 0; i < h; i++)
-		{
-			for (size_t j = 0; j < w; j++)
-			{
-				setxy(x + j, i + y);
-				cout << " ";
-			}
-		}
-	}
+    virtual ~CMovil() {}
 
-	//int validarMov(int maxx, int maxy, int minx, int miny) {
-	//	if (x + dx  < minx || x + w + dx >maxx) { return 1; }
-	//	if (y + dy  < miny || y + h + dy >maxy) { return 2; }
-	//}
-	//void movInvalido(int eje) {
-	//	if (eje == 1) { dx = -dx; }
-	//	if (eje == 2) { dy = -dy; }
-	//}
+    void borrar() {
+        for (size_t i = 0; i < h; i++) {
+            for (size_t j = 0; j < w; j++) {
+                setxy(x + j, i + y);
+                cout << " ";
+            }
+        }
+    }
 
-	void dibujaPersonaje()
-	{
-		for (size_t i = 0; i < h; i++)
-		{
-			for (size_t j = 0; j < w; j++)
-			{
-				color(992);
-				setxy(x + j, i + y);
-				if (i == 0 && j == 1)cout << char(79);
-				else if ((i == h - 2 && j == 0) || (i == h - 1 && j == 0)) cout << char(47);
-				else if ((i == h - 2 && j == w - 1) || (i == h - 1 && j == w - 1)) cout << char(92);
-				if (i == 1 && j == 1)cout << char(124);
-				else cout << ' ';
-			}
-			cout << endl;
-		}
-	}
+    virtual void dibujar() {
+        for (size_t i = 0; i < h; i++) {
+            for (size_t j = 0; j < w; j++) {
+                setxy(x + j, i + y);
+                cout << char(219);
+            }
+        }
+    }
+    virtual int getX() {
+        return x;
+    }
 
-	void mover(char var) 
-	{
-		switch (var)
-		{
-		case 'W':
-			if (y > MINY) y -= dy;
+    virtual int getY() {
+        return y;
+    }
 
-			break;
-		case 'S':
-			if (y < MAXY-2) y += dy;
+    virtual int getAncho() {
+        return w;
+    }
 
-			break;
-		case 'A':
-			if (x > MINX) x -= dx;
+    virtual int getAlto() {
+        return h;
+    }
 
-			break;
-		case 'D':
-			if (x < MAXX) x += dx;
+};
+
+class Personaje : public CMovil {
+private:
+    int puntosAcumulados;
+
+public:
+    Personaje() : CMovil(50, 33, 1, 1, 3, 3), puntosAcumulados(0) {}
+
+    void mostrarPuntos() {
+        setColor(14, 0);
+        cout << "PUNTOS: ";
+        setColor(14, 1);
+        cout << puntosAcumulados;
+    }
+
+    void setPuntosAcumulados(int suma) { puntosAcumulados += suma; }
+    int getPuntosAcumulados() { return puntosAcumulados; }
+
+    void Personaje::dibujar() {
+        for (size_t i = 0; i < h; i++) {
+            for (size_t j = 0; j < w; j++) {
+                color(992);
+                setxy(x + j, i + y);
+
+                if (i == 0 && j == 1)
+                    cout << char(79);
+                else if ((i == h - 2 && j == 0) || (i == h - 1 && j == 0))
+                    cout << char(47);
+                else if ((i == h - 2 && j == w - 1) || (i == h - 1 && j == w - 1))
+                    cout << char(92);
+                else if (i == 1 && j == 1)
+                    cout << char(124);
+                else
+                    cout << ' ';
+            }
+            cout << endl;
+        }
+    }
 
 
-			break;
-		}
-	}
-
-
-	int getX() { return x; }
-	int getY() { return y; }
-	int getAlto() { return h; }
-	int getAncho() { return w; }
+    void mover(char var) {
+        switch (var) {
+        case 'W':
+            if (y > MINY) y -= dy;
+            break;
+        case 'S':
+            if (y < MAXY - 2) y += dy;
+            break;
+        case 'A':
+            if (x > MINX) x -= dx;
+            break;
+        case 'D':
+            if (x < MAXX) x += dx;
+            break;
+        }
+    }
 };

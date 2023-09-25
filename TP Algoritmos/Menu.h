@@ -200,6 +200,7 @@ void moverPuntero(int& xP, int& yP, int& dyP, bool& mostrarPuntero)
 			Console::Clear();
 			CJuego* objJuego = new CJuego();
 			printJuegoMatriz();
+			vidas = 3;
 			objJuego->partida(irAlMenu);
 			//if (ir_al_Menu == true) menuFinal();
 

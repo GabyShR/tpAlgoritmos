@@ -3,7 +3,7 @@
 #include "Pregunta.h"
 #include "Pelotas.h"
 #include "Personaje.h"
-
+#include "Aliado.h"
 int vidas = 3;
 
 class CPartida

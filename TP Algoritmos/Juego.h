@@ -4,21 +4,15 @@
 #include "MMSystem.h"
 
 #pragma comment(lib, "winmm.lib")
-int canciones[8] = { 0,1,2,3,4,5,7 };
+int canciones[2] = { 1,2 };
 
 void playmusic() {
 	srand(time(NULL));
 
-	int music = canciones[(rand() % 8)];
+	int music = canciones[(rand() % 2)];
 
-	if (music == 0) PlaySound(TEXT("africa.wav"), NULL, SND_ASYNC);
-	if (music == 1) PlaySound(TEXT("allstar.wav"), NULL, SND_ASYNC);
-	if (music == 2) PlaySound(TEXT("feelgood.wav"), NULL, SND_ASYNC);
-	if (music == 3) PlaySound(TEXT("getlucky.wav"), NULL, SND_ASYNC);
-	if (music == 4) PlaySound(TEXT("paloma.wav"), NULL, SND_ASYNC);
-	if (music == 5) PlaySound(TEXT("smells.wav"), NULL, SND_ASYNC);
-	if (music == 6) PlaySound(TEXT("takeonme.wav"), NULL, SND_ASYNC);
-	if (music == 7) PlaySound(TEXT("triciclo.wav"), NULL, SND_ASYNC);
+	if (music == 1) PlaySound(TEXT("feelgood.wav"), NULL, SND_ASYNC);
+	if (music == 2) PlaySound(TEXT("getlucky.wav"), NULL, SND_ASYNC);
 
 }
 
@@ -285,7 +279,7 @@ public:
 
 	void partida(bool& irAlMenu)
 	{
-		playmusic();
+		
 		irAlMenu = false;
 		color(992);
 		rondaPartidas[0]->mostrarEnunciados();

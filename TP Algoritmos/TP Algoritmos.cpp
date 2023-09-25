@@ -9,7 +9,7 @@ int main()
     srand(time(0));
     Console::SetWindowSize(120, 40);
     Console::CursorVisible = false;
-
+    playmusic(); 
     menuFinal();
 
     system("pause>0");

@@ -27,7 +27,7 @@ void menuFinal();
 
 void mostrarVidas(int& vidas)
 {
-	setColor(14,12);
+	setColor(14, 12);
 	setxy(100, 10);
 
 	switch (vidas)
@@ -217,7 +217,6 @@ void printPerdiste()
 void printYouWin()
 {
 	restaurarIdiomaOriginal();
-	system("cls");
 	for (size_t i = 0; i < 40; i++)
 	{
 		for (size_t j = 0; j < 120; j++)
@@ -239,6 +238,7 @@ private:
 	Aliado* objAliado;
 	int numeroRonda;
 	bool aliadoCogido;
+	bool yaNoMuestresAliado;
 public:
 	CJuego()
 	{
@@ -283,7 +283,7 @@ public:
 		objPersonaje->mostrarPuntos();
 	}
 
-	void partida(bool &irAlMenu)
+	void partida(bool& irAlMenu)
 	{
 		playmusic();
 		irAlMenu = false;
@@ -295,13 +295,14 @@ public:
 			if (numeroRonda >= 3 && !aliadoCogido) {
 				objAliado->borrar();
 				int eje;
-				eje = objAliado->validarMov(60,35,15,16);
+				eje = objAliado->validarMov(80, 35, 15, 16);
 				if (eje) {
 					objAliado->movInvalido(eje);
 				}
 				objAliado->mover();
 				objAliado->dibujar();
 			}
+
 			cronometro->mostrarTiempo();
 			animaPersonaje();
 
@@ -313,22 +314,21 @@ public:
 				if (victoria()) {
 					printYouWin();
 					system("pause>0");
-					irAlMenu = true;
+					break;
 				}
 				if (derrota(vidas)) {
 					printPerdiste();
 					system("pause>0");
-					irAlMenu = true;
+					break;
 				}
 				else {
 					resetearPartida();
 				}
 			}
-
 			_sleep(60);
 
 		}
-
+		irAlMenu = true;
 		if (irAlMenu) menuFinal();
 	};
 

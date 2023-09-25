@@ -39,7 +39,7 @@ public:
 		controladorPelotas->animacion(objPregunta->getOpcionCorrecta(), objPregunta->getOpcionIncorrecta());
 	}
 
-	bool verificarColisiones(Personaje* Jugador, Aliado* Aliado, bool AliadoCogido)
+	bool verificarColisiones(Personaje* Jugador, Aliado* Aliado, bool& AliadoCogido)
 	{
 
 		if (identificarColision(controladorPelotas->at(0)->getX(), controladorPelotas->at(0)->getY(), controladorPelotas->at(0)->getAncho(), controladorPelotas->at(0)->getAlto(),
@@ -58,8 +58,8 @@ public:
 
 		if (identificarColision(Jugador->getX(), Jugador->getY(), Jugador->getAncho(), Jugador->getAlto(), Aliado->getX(), Aliado->getY(), Aliado->getAncho(), Aliado->getAlto())) {
 			AliadoCogido = true;
-				vidas++;
-				return true;
+			vidas++;
+			return true;
 		}
 
 
